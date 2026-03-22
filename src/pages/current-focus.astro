@@ -1,67 +1,87 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { getSiteConfig } from '../lib/content';
 
 const locale = 'en' as const;
 const site = await getSiteConfig(locale);
-const projects = (await getCollection('projects', ({ data }) => data.lang === locale)).filter(
-	(project) => project.data.status !== 'completed',
-);
+const projects = site.currentFocus.projects;
 ---
 
-<BaseLayout locale={locale} alternatePath="/zh/current-focus/" title={`Current Focus | ${site.name}`}>
-	<main class="wrapper page-main stack gap-12">
+<BaseLayout
+	locale={locale}
+	alternatePath="/zh/current-focus/"
+	title={`Current Focus | ${site.name}`}
+	description={site.currentFocus.importance}
+>
+	<main class="wrapper page-main stack gap-16">
 		<SectionHeading
 			eyebrow="Current Focus"
 			title="What I am researching now and why it matters"
-			intro="This page answers a simple question first: what is the active research problem, and how is it being turned into real systems and experiments?"
+			intro="This page is intentionally simple: it should help a first-time visitor understand the active research theme, the major project threads, and the direction I am building toward."
 		/>
 
-		<section class="cards-grid three">
-			<div class="surface-card focus-card">
-				<span class="meta-chip warm">Research Theme</span>
-				<p>{site.currentFocus.theme}</p>
+		<section class="surface-card focus-overview">
+			<div class="stack gap-4">
+				<span class="meta-chip warm">Research theme</span>
+				<h2>{site.currentFocus.theme}</h2>
+				<p class="lede">{site.currentFocus.now}</p>
 			</div>
-			<div class="surface-card focus-card">
-				<span class="meta-chip">Why it matters</span>
-				<p>{site.currentFocus.importance}</p>
-			</div>
-			<div class="surface-card focus-card">
-				<span class="meta-chip">Now in progress</span>
-				<p>{site.currentFocus.now}</p>
-			</div>
+			<ul class="tag-list">
+				{site.researchAreas.map((area) => <li class="tag">{area}</li>)}
+			</ul>
 		</section>
 
-		<section class="stack gap-6">
-			<SectionHeading eyebrow="Active Projects" title="Project threads" />
-			<div class="cards-grid three">
-				{projects.slice(0, 3).map((project) => <ProjectCard project={project} locale={locale} />)}
-			</div>
+		<section class="cards-grid three">
+			{
+				projects.map((project) => (
+					<article class="surface-card project-brief stack gap-4">
+						<div class="project-brief-meta">
+							<span class="meta-chip warm">{project.status}</span>
+						</div>
+						<div class="stack gap-2">
+							<h3>{project.title}</h3>
+							<p>{project.summary}</p>
+						</div>
+					</article>
+				))
+			}
 		</section>
 
 		<section class="cards-grid two">
-			<div class="surface-card focus-card stack gap-4">
-				<h3>Methods and platforms</h3>
-				<ul class="focus-list">
-					{site.currentFocus.methods.map((item) => <li>{item}</li>)}
-				</ul>
-			</div>
-			<div class="surface-card focus-card stack gap-4">
-				<h3>Near-term goals</h3>
+			<article class="surface-card focus-card stack gap-4">
+				<span class="meta-chip">Why it matters</span>
+				<p>{site.currentFocus.importance}</p>
+			</article>
+			<article class="surface-card focus-card stack gap-4">
+				<span class="meta-chip">Near-term goals</span>
 				<ul class="focus-list">
 					{site.currentFocus.goals.map((item) => <li>{item}</li>)}
 				</ul>
-			</div>
+			</article>
 		</section>
 	</main>
 </BaseLayout>
 
 <style>
+	.focus-overview,
+	.project-brief,
 	.focus-card {
-		padding: 1.25rem;
+		padding: 1.45rem;
+	}
+
+	.project-brief {
+		min-height: 100%;
+	}
+
+	.project-brief p,
+	.focus-card p {
+		color: var(--text-muted);
+	}
+
+	.project-brief-meta {
+		display: flex;
+		justify-content: flex-start;
 	}
 
 	.focus-list {

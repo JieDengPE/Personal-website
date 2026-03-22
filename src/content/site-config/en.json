@@ -1,168 +1,180 @@
 {
-  "name": "[Your Name]",
+  "name": "Jie Deng",
   "title": "Power Electronics PhD Researcher",
-  "tagline": "Designing efficient converters, robust digital control, and lab-ready validation workflows.",
+  "tagline": "Exploring medium-voltage converters, transformer co-design, and next-generation power modules for future energy interfaces.",
   "defaultLocale": "en",
-  "location": "[City, Country]",
-  "email": "your.email@example.com",
+  "location": "Arizona State University, Phoenix, Arizona, United States",
+  "email": "jdeng56@asu.edu",
   "researchAreas": [
-    "Bidirectional power converters",
-    "Digital control for power electronics",
-    "Wide-bandgap device applications",
-    "Modeling and hardware validation"
+    "Medium-voltage solid-state transformer converters",
+    "Single-port and dual-port SST transformer design",
+    "High-isolation auxiliary power supplies",
+    "Medium-voltage GaN power modules",
+    "High-voltage SiC power modules",
+    "Partial-discharge experimental platforms",
+    "AI-based converter and power module design"
   ],
   "hero": {
-    "headline": "I build power-electronics systems that connect converter hardware, digital control, and reliable validation.",
-    "subheadline": "PhD researcher in power electronics focused on high-efficiency conversion, practical control implementation, and turning research questions into repeatable lab prototypes.",
+    "headline": "I research medium-voltage power converters, transformer co-design, and power modules that can push future energy systems forward.",
+    "subheadline": "PhD researcher at Arizona State University working at the intersection of solid-state transformers, high-frequency power conversion, insulation-aware design, and next-generation GaN/SiC power modules.",
     "keywords": [
-      "power converters",
-      "digital control",
-      "wide-bandgap devices",
-      "modeling",
-      "hardware validation"
+      "medium-voltage SST",
+      "transformer co-design",
+      "GaN power modules",
+      "SiC power modules",
+      "partial discharge",
+      "AI-based design"
     ],
     "quickFacts": [
       {
         "label": "Now",
-        "value": "Converter platforms",
-        "detail": "Building modular hardware benches for repeatable experiments."
+        "value": "ASU PhD",
+        "detail": "Focused on medium-voltage solid-state transformer systems and high-voltage module design."
       },
       {
-        "label": "Method",
-        "value": "Model -> code -> hardware",
-        "detail": "Connecting simulation, embedded control, and verification."
+        "label": "Trajectory",
+        "value": "Grid converters -> MV systems",
+        "detail": "From grid-tied inverters and UPS hardware to high-frequency, high-voltage research platforms."
       },
       {
-        "label": "Why it matters",
-        "value": "Efficiency + reliability",
-        "detail": "Making advanced power-electronics research easier to validate and deploy."
+        "label": "Focus",
+        "value": "Converter + transformer + module",
+        "detail": "Studying complete power-electronic systems instead of isolated building blocks."
       }
     ]
   },
   "currentFocus": {
-    "theme": "Converter architectures and control workflows that stay robust from simulation to hardware validation.",
-    "importance": "Power-electronics research becomes more useful when control ideas can move into repeatable, instrumented, and well-documented prototypes instead of staying only in simulation.",
-    "now": "My current work centers on modular converter platforms, practical digital control implementation, and evaluation workflows that make debugging and comparison faster.",
+    "theme": "Medium-voltage solid-state transformer converters, transformer co-design, and high-voltage power-module research for next-generation energy conversion systems.",
+    "importance": "Future energy infrastructure needs converters that are not only efficient, but also compact, intelligent, insulation-aware, and scalable. By working across SST converters, transformer design, auxiliary supplies, high-voltage modules, and partial-discharge platforms, I aim to help medium-voltage power electronics move closer to deployable systems for cleaner and more flexible grids.",
+    "now": "My current work spans converter topology design, transformer and insulation constraints, auxiliary power architecture, GaN and SiC module development, partial-discharge experimentation, and AI-assisted design exploration.",
     "projects": [
       {
-        "title": "Modular bidirectional converter platform",
+        "title": "Medium-voltage SST converter and transformer co-design",
         "status": "Active",
-        "summary": "A flexible bench for testing topologies, sensors, and control strategies with consistent measurement interfaces."
+        "summary": "Studying single-port and dual-port SST architectures together with transformer constraints, integration decisions, and system-level performance."
       },
       {
-        "title": "Digital control validation workflow",
+        "title": "High-isolation auxiliary power supply design",
         "status": "Active",
-        "summary": "A repeatable path from simulation models to embedded code, with hardware-oriented checkpoints for tuning and debugging."
+        "summary": "Designing auxiliary supplies that can support medium-voltage systems while meeting demanding insulation and reliability requirements."
       },
       {
-        "title": "Wide-bandgap device evaluation rig",
-        "status": "Ongoing",
-        "summary": "Comparing switching behavior, thermal considerations, and gate-drive decisions under realistic lab conditions."
+        "title": "High-switching-frequency medium-voltage GaN power module design",
+        "status": "Active",
+        "summary": "Exploring how GaN-based modules can enable higher switching frequency, higher power density, and new converter possibilities at medium voltage."
+      },
+      {
+        "title": "Medium-frequency high-voltage SiC power module design",
+        "status": "Active",
+        "summary": "Developing high-voltage SiC module concepts for medium-frequency operation with attention to packaging, electric field stress, and system integration."
+      },
+      {
+        "title": "Square-wave partial discharge experimental platform",
+        "status": "Active",
+        "summary": "Building an experimental setup for understanding insulation behavior and partial-discharge phenomena under square-wave excitation."
+      },
+      {
+        "title": "AI-based converter and power module design",
+        "status": "Exploratory",
+        "summary": "Investigating how AI methods can accelerate design-space exploration for converters, modules, and system-level decisions."
       }
     ],
-    "methods": [
-      "State-space and averaged modeling",
-      "PLECS / MATLAB-Simulink verification",
-      "DSP and embedded implementation",
-      "Oscilloscope-centered debugging",
-      "Hardware bring-up checklists and lab documentation"
-    ],
+    "methods": [],
     "goals": [
-      "Shorten the gap between simulation and hardware results",
-      "Create reusable converter and measurement infrastructure",
-      "Document procedures so future experiments scale better"
+      "Bridge converter topology, transformer design, insulation behavior, and module development in one coherent research direction",
+      "Build research platforms that produce trustworthy experimental insight at medium voltage",
+      "Create designs that are not only high-performance on paper, but meaningful for future deployable power systems"
     ]
   },
   "skillGroups": [
     {
-      "title": "Power Stage Design",
-      "description": "Designing the hardware side of converter systems with attention to efficiency, measurement access, and safe bring-up.",
+      "title": "Converters and Power Hardware",
+      "description": "Designing power stages from low-voltage prototypes to medium-voltage research systems.",
       "items": [
-        "DC-DC and bidirectional converter architectures",
-        "Magnetics and passive selection",
-        "Gate drive and protection considerations",
-        "Thermal and layout-aware prototyping"
+        "Single-phase grid-tied inverters",
+        "UPS power supplies",
+        "DC-DC converters and auxiliary supplies",
+        "Three-level converter technology",
+        "Solid-state transformer converter design"
       ]
     },
     {
-      "title": "Control and Modeling",
-      "description": "Moving from equations to stable control implementation with a clear validation path.",
+      "title": "Embedded, PCB, and Experimental Practice",
+      "description": "Connecting hardware implementation with controller realization and testability.",
       "items": [
-        "Small-signal and averaged models",
-        "Digital control loop design",
-        "Compensation and tuning workflows",
-        "Simulation correlation with measured behavior"
+        "DSP programming",
+        "STM32 programming",
+        "PCB design",
+        "High-frequency experimental validation",
+        "Laboratory debugging and prototype bring-up"
       ]
     },
     {
-      "title": "Software and Lab Workflow",
-      "description": "Building repeatable engineering workflows across software, firmware, and documentation.",
+      "title": "Research and Advanced Topics",
+      "description": "Developing deeper research capability for high-voltage and high-frequency systems.",
       "items": [
-        "MATLAB / Simulink / PLECS",
-        "Embedded firmware and instrumentation",
-        "Versioned experiment notes",
-        "Technical writing for manuals and bring-up guides"
+        "Research writing",
+        "Soft-switching techniques",
+        "High-frequency three-phase T-type three-level inverter research",
+        "Medium-voltage GaN and SiC module design",
+        "AI-based power-electronics design exploration"
       ]
     }
   ],
   "featuredProjects": [
-    "project-modular-platform",
-    "project-digital-control-bench",
-    "project-wbg-rig"
+    "project-mv-sst",
+    "project-gan-module",
+    "project-pd-platform"
   ],
   "socialLinks": [
     {
       "label": "GitHub",
-      "href": "https://github.com/your-username"
+      "href": "https://github.com/JieDengPE"
     },
     {
       "label": "Google Scholar",
-      "href": "https://scholar.google.com/"
-    },
-    {
-      "label": "LinkedIn",
-      "href": "https://www.linkedin.com/"
+      "href": "https://scholar.google.com/citations?user=2c00EU4AAAAJ&hl=en"
     },
     {
       "label": "Email",
-      "href": "mailto:your.email@example.com"
+      "href": "mailto:jdeng56@asu.edu"
     }
   ],
   "cv": {
-    "profile": "This site is structured as a research portfolio first: it shows what I am working on now, how my experience developed over time, and how I turn ideas into documented engineering work.",
+    "profile": "I am a PhD researcher in power electronics at Arizona State University. My work connects medium-voltage solid-state transformer systems, transformer and insulation-aware design, high-isolation auxiliary power supplies, and next-generation GaN/SiC power modules.",
     "education": [
       {
         "stage": "PhD",
-        "institution": "[University Name]",
-        "period": "20XX - Present",
-        "focus": "Power electronics, converter control, and laboratory validation"
+        "institution": "Arizona State University",
+        "period": "2024 - Present",
+        "focus": "Medium-voltage SST converters and transformer design, high-isolation auxiliary power supplies, GaN/SiC power modules, partial-discharge platforms, and AI-based design"
       },
       {
         "stage": "Master's",
-        "institution": "[University Name]",
-        "period": "20XX - 20XX",
-        "focus": "Advanced power conversion and system modeling"
+        "institution": "Hebei University of Technology, Tianjin, China",
+        "period": "2021 - 2024",
+        "focus": "Three-phase high-frequency T-type three-level grid-connected inverter research above 200 kHz, research writing, soft-switching, and three-level converter technology"
       },
       {
         "stage": "Bachelor's",
-        "institution": "[University Name]",
-        "period": "20XX - 20XX",
-        "focus": "Electrical engineering foundations and hardware practice"
+        "institution": "Changsha University of Science and Technology, Changsha, China",
+        "period": "2017 - 2021",
+        "focus": "Single-phase grid-tied inverters, UPS power supplies, DC-DC converters, auxiliary power supplies, DSP/STM32 programming, and PCB design"
       }
     ],
     "strengths": [
-      "Turning abstract research problems into testable engineering questions",
-      "Building converter prototypes with clear measurement strategies",
-      "Documenting workflows so projects stay reusable over time"
+      "Working across converter, transformer, insulation, and module perspectives rather than treating them as isolated topics",
+      "Combining hardware implementation with experimental validation and research writing",
+      "Building technical depth from practical converter prototypes toward medium-voltage system research"
     ],
     "collaboration": [
-      "Open to academic collaboration, technical discussion, and project exchange",
-      "Comfortable contributing to prototype design, validation planning, and technical documentation",
-      "This page is ready to be paired with a downloadable PDF CV later"
+      "Open to academic collaboration in SSTs, medium-voltage converters, transformer and insulation design, and power modules",
+      "Interested in discussions around high-frequency and high-voltage experimental platforms",
+      "Available for technical exchange through email or GitHub"
     ]
   },
   "contact": {
     "title": "Interested in collaboration or technical exchange?",
-    "text": "I am happy to connect around converter design, digital control, experimental workflows, and documentation-heavy research projects."
+    "text": "I am happy to connect around medium-voltage converters, solid-state transformers, power-module design, insulation-aware systems, and AI-based design in power electronics."
   }
 }

@@ -17,7 +17,7 @@ const timeline = (await getCollection('timeline', ({ data }) => data.lang === lo
 		<SectionHeading
 			eyebrow="Timeline"
 			title="从本科到博士的研究轨迹"
-			intro="这里不仅展示阶段与学校，也更强调每个阶段做过什么项目、积累了哪些能力，以及研究重心是如何逐步演化的。"
+			intro="这里不仅展示学校和阶段，也更强调每个阶段做过什么项目、沉淀了哪些能力，以及研究重点是怎样逐渐演化的。"
 		/>
 		<div class="stack gap-6">
 			{timeline.map((entry) => <TimelineCard entry={entry} />)}

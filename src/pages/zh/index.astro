@@ -38,10 +38,10 @@ const formatDate = (date: Date) =>
 	description={site.tagline}
 >
 	<main class="wrapper page-main stack gap-20">
-		<section class="hero-grid">
-			<div class="stack gap-8">
+		<section class="home-hero">
+			<div class="hero-copy stack gap-8">
 				<div class="stack gap-4">
-					<span class="eyebrow">Power Electronics Research</span>
+					<span class="eyebrow">Power Electronics / Medium Voltage</span>
 					<h1>{site.hero.headline}</h1>
 					<p class="hero-summary">{site.hero.subheadline}</p>
 				</div>
@@ -50,37 +50,59 @@ const formatDate = (date: Date) =>
 					{site.hero.keywords.map((keyword) => <li class="tag">{keyword}</li>)}
 				</ul>
 
-				<div class="hero-meta">
-					<div>
-						<span class="meta-label">身份</span>
-						<p>{site.title}</p>
-					</div>
-					<div>
-						<span class="meta-label">所在地</span>
-						<p>{site.location}</p>
-					</div>
-				</div>
-
-				<div class="cta-row">
+				<div class="hero-actions">
 					<a class="button-link" href={localizePath(locale, 'current-focus')}>查看当前研究</a>
 					<a class="button-link secondary" href={localizePath(locale, 'timeline')}>查看时间线</a>
+				</div>
+
+				<div class="surface-card profile-band">
+					<div class="profile-item">
+						<span class="mono">身份</span>
+						<p>{site.title}</p>
+					</div>
+					<div class="profile-item">
+						<span class="mono">所在</span>
+						<p>{site.location}</p>
+					</div>
+					<div class="profile-item">
+						<span class="mono">联系</span>
+						<p>{site.email}</p>
+					</div>
 				</div>
 			</div>
 
 			<div class="surface-card hero-panel">
-				<div class="hero-panel-head">
-					<p class="mono">RESEARCH SIGNAL</p>
-					<p>30 秒概览</p>
+				<div class="panel-head">
+					<div class="stack gap-2">
+						<p class="mono muted">30-SECOND BRIEF</p>
+						<h2>研究速览</h2>
+					</div>
+					<span class="meta-chip warm">当前进行中</span>
 				</div>
-				<div class="wave-grid">
-					<div class="wave wave-a" />
-					<div class="wave wave-b" />
-					<div class="wave wave-c" />
+
+				<div class="signal-list">
+					<article class="signal-item">
+						<span class="signal-label">Who</span>
+						<p>{site.title}，现于亚利桑那州立大学开展研究。</p>
+					</article>
+					<article class="signal-item">
+						<span class="signal-label">What</span>
+						<p>{site.currentFocus.theme}</p>
+					</article>
+					<article class="signal-item">
+						<span class="signal-label">Why</span>
+						<p>{site.currentFocus.importance}</p>
+					</article>
+					<article class="signal-item">
+						<span class="signal-label">Next</span>
+						<p>{site.currentFocus.now}</p>
+					</article>
 				</div>
-				<div class="stats-grid">
+
+				<div class="quick-grid">
 					{
 						site.hero.quickFacts.map((fact) => (
-							<div class="stat-card">
+							<div class="quick-card">
 								<span class="mono muted">{fact.label}</span>
 								<h3>{fact.value}</h3>
 								<p>{fact.detail}</p>
@@ -94,21 +116,21 @@ const formatDate = (date: Date) =>
 		<section class="page-section stack gap-8">
 			<SectionHeading
 				eyebrow="Current Focus"
-				title="我现在在研究什么"
-				intro="这个区域的目标很明确：第一次访问的人应该能在很短时间内理解你的主研究问题、意义，以及实验室里正在推进的工作。"
+				title="一眼看懂我现在在做什么"
+				intro="首页的目标很明确：让第一次访问的人能迅速理解你是谁、你在研究什么、为什么重要，以及接下来应该点开哪里。"
 			/>
 			<div class="cards-grid three">
-				<div class="surface-card info-card">
+				<div class="surface-card mini-card">
 					<span class="meta-chip warm">研究主题</span>
 					<p>{site.currentFocus.theme}</p>
 				</div>
-				<div class="surface-card info-card">
-					<span class="meta-chip">为什么重要</span>
+				<div class="surface-card mini-card">
+					<span class="meta-chip">研究意义</span>
 					<p>{site.currentFocus.importance}</p>
 				</div>
-				<div class="surface-card info-card">
-					<span class="meta-chip">当前进展</span>
-					<p>{site.currentFocus.now}</p>
+				<div class="surface-card mini-card">
+					<span class="meta-chip">当前主线</span>
+					<p>{site.currentFocus.projects.map((project) => project.title).join(' / ')}</p>
 				</div>
 			</div>
 		</section>
@@ -116,8 +138,8 @@ const formatDate = (date: Date) =>
 		<section class="page-section stack gap-8">
 			<SectionHeading
 				eyebrow="Featured Projects"
-				title="最能代表当前方向的项目"
-				intro="这些项目共同体现了平台化、验证流程和工程复用这条主线。"
+				title="最能代表当前研究方向的项目"
+				intro="这些项目基本定义了我目前理解中压电力电子系统的几个关键切面。"
 			/>
 			<div class="cards-grid three">
 				{featuredProjects.map((project) => <ProjectCard project={project} locale={locale} />)}
@@ -127,8 +149,8 @@ const formatDate = (date: Date) =>
 		<section class="page-section stack gap-8">
 			<SectionHeading
 				eyebrow="Journey"
-				title="从基础积累到博士阶段的平台化研究"
-				intro="用一条简洁时间线回看从本科到博士的能力积累与研究重点变化。"
+				title="从硬件基础到中压系统研究的时间线"
+				intro="这里简洁地呈现了本科阶段的工程训练、硕士阶段的研究深化，以及博士阶段正在推进的系统级方向。"
 			/>
 			<div class="stack gap-6">
 				{timeline.map((entry) => <TimelineCard entry={entry} />)}
@@ -138,11 +160,11 @@ const formatDate = (date: Date) =>
 		<section class="page-section stack gap-8">
 			<SectionHeading
 				eyebrow="Writing and Manuals"
-				title="思考、记录与实验手册"
-				intro="博客用于记录观点和研究思考，手册用于沉淀可执行、可复用的实验与软硬件操作流程。"
+				title="想法记录与可复用的实验文档"
+				intro="博客更偏思考、技术记录和阶段总结；手册更偏操作流程、实验步骤和能直接复用的文档资产。"
 			/>
 			<div class="cards-grid two">
-				<div class="stack gap-4">
+				<div class="entry-column stack gap-4">
 					<h3>最新文章</h3>
 					{
 						posts.slice(0, 2).map((post) => (
@@ -157,8 +179,8 @@ const formatDate = (date: Date) =>
 						))
 					}
 				</div>
-				<div class="stack gap-4">
-					<h3>操作手册</h3>
+				<div class="entry-column stack gap-4">
+					<h3>实验手册</h3>
 					{
 						manuals.slice(0, 2).map((manual) => (
 							<EntryCard
@@ -181,7 +203,7 @@ const formatDate = (date: Date) =>
 				<h2>{site.contact.title}</h2>
 				<p class="lede">{site.contact.text}</p>
 			</div>
-			<div class="cta-row">
+			<div class="hero-actions">
 				<a class="button-link" href={`mailto:${site.email}`}>发送邮件</a>
 				<a class="button-link secondary" href={localizePath(locale, 'cv')}>查看简历</a>
 			</div>
@@ -190,87 +212,95 @@ const formatDate = (date: Date) =>
 </BaseLayout>
 
 <style>
-	.hero-grid {
+	.home-hero {
 		display: grid;
 		gap: 1.5rem;
+		align-items: start;
 	}
 
 	.hero-summary {
+		max-width: 46rem;
 		font-size: var(--text-lg);
-		color: var(--text-muted);
-		max-width: 42rem;
+		color: var(--text-body);
 	}
 
-	.hero-meta {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1.5rem;
-	}
-
-	.meta-label {
-		display: block;
-		font-family: var(--font-code);
-		font-size: var(--text-sm);
-		color: var(--accent-alt);
-		margin-bottom: 0.25rem;
-	}
-
-	.cta-row {
+	.hero-actions {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.8rem;
 	}
 
-	.hero-panel {
-		padding: 1.4rem;
-		display: grid;
-		gap: 1.25rem;
+	.profile-band,
+	.hero-panel,
+	.mini-card,
+	.contact-panel {
+		padding: 1.45rem;
 	}
 
-	.hero-panel-head {
+	.profile-band {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.profile-item span,
+	.signal-label {
+		color: var(--accent-cyan);
+		font-size: var(--text-sm);
+		letter-spacing: 0.14em;
+	}
+
+	.profile-item p {
+		margin-top: 0.35rem;
+	}
+
+	.hero-panel {
+		display: grid;
+		gap: 1.15rem;
+		background:
+			radial-gradient(circle at top right, rgba(70, 182, 200, 0.12), transparent 28%),
+			radial-gradient(circle at left bottom, rgba(215, 121, 57, 0.12), transparent 30%),
+			var(--gradient-panel);
+	}
+
+	.panel-head {
 		display: flex;
+		align-items: flex-start;
 		justify-content: space-between;
 		gap: 1rem;
+	}
+
+	.signal-list,
+	.quick-grid {
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	.signal-item,
+	.quick-card {
+		padding: 1rem;
+		border-radius: 1rem;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(125, 148, 176, 0.12);
+	}
+
+	.signal-item p {
+		margin-top: 0.45rem;
+		color: var(--text-body);
+	}
+
+	.quick-card h3 {
+		margin-top: 0.5rem;
+		font-size: 1.35rem;
+	}
+
+	.quick-card p,
+	.mini-card p {
+		margin-top: 0.6rem;
 		color: var(--text-muted);
 	}
 
-	.wave-grid {
-		display: grid;
-		gap: 0.85rem;
-		padding: 1rem 0;
-	}
-
-	.wave {
-		height: 4.5rem;
-		border-radius: 999rem;
-		background-size: 220% 100%;
-		animation: drift 9s linear infinite;
-	}
-
-	.wave-a {
-		background:
-			radial-gradient(circle at left, rgba(23, 196, 201, 0.45), transparent 28%),
-			linear-gradient(90deg, rgba(23, 196, 201, 0.08), rgba(23, 196, 201, 0.3), transparent);
-	}
-
-	.wave-b {
-		background:
-			radial-gradient(circle at 20% 50%, rgba(221, 122, 50, 0.4), transparent 24%),
-			linear-gradient(90deg, transparent, rgba(221, 122, 50, 0.3), rgba(23, 196, 201, 0.16));
-		animation-duration: 12s;
-	}
-
-	.wave-c {
-		background:
-			radial-gradient(circle at 60% 50%, rgba(23, 196, 201, 0.35), transparent 18%),
-			linear-gradient(90deg, rgba(23, 196, 201, 0.24), transparent, rgba(221, 122, 50, 0.22));
-		animation-duration: 10s;
-	}
-
-	.stat-card,
-	.info-card,
-	.contact-panel {
-		padding: 1.25rem;
+	.entry-column h3 {
+		font-size: 1.35rem;
 	}
 
 	.contact-panel {
@@ -279,19 +309,19 @@ const formatDate = (date: Date) =>
 		gap: 1rem;
 	}
 
-	@keyframes drift {
-		from {
-			background-position: 0% 50%;
+	@media (min-width: 48em) {
+		.profile-band {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
-		to {
-			background-position: 200% 50%;
+
+		.quick-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 	}
 
-	@media (min-width: 62em) {
-		.hero-grid {
-			grid-template-columns: 1.3fr 0.9fr;
-			align-items: center;
+	@media (min-width: 68em) {
+		.home-hero {
+			grid-template-columns: minmax(0, 1.2fr) minmax(20rem, 0.92fr);
 		}
 
 		.contact-panel {

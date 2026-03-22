@@ -1,29 +1,42 @@
-﻿---
-title: 开放式实验文档工具链
-routeSlug: open-lab-documentation-toolchain
-order: 4
-status: completed
-period: 2023 - 2025
-domain: 研究流程建设
-stack:
-  - Markdown
-  - Git 工作流
-  - 结构化实验记录
-  - 可复用模板
-keywords:
-  - 文档体系
-  - 实验流程
-  - 知识沉淀
-summary: 这个项目关注如何把实验记录、操作指南和故障排查文档统一组织起来，让不同项目之间可以更顺畅地复用经验。
-highlights:
-  - 把观点型文章和步骤型手册明确分开
-  - 提升实验知识的交接效率与复用价值
-  - 让技术决策更容易被检索和版本化管理
-links:
-  - label: 文档模板占位链接
-    href: https://github.com/your-username/open-lab-documentation-toolchain
-featured: false
-lang: zh
-translationKey: project-open-lab-toolchain
 ---
-这个项目更偏向研究流程建设，而不只是某一个硬件结果。清晰的文档体系会直接改变一个实验室复现实验、比较方案和延展已有成果的效率。
+title: 方波局部放电实验平台
+routeSlug: square-wave-partial-discharge-experimental-platform
+order: 5
+status: active
+period: 2024 - 至今
+domain: 绝缘与诊断
+stack:
+  - 局部放电
+  - 方波激励
+  - 高压实验
+  - 测试平台
+  - 绝缘行为
+keywords:
+  - 局部放电
+  - 绝缘
+  - 方波
+  - 实验平台
+summary: 搭建方波激励下的局部放电实验平台，用于研究现代电力电子系统中绝缘行为与局部放电现象之间的关系。
+highlights:
+  - 让绝缘问题更接近真实电力电子应力环境
+  - 为那些无法仅凭经验判断的设计决策提供实验依据
+  - 把绝缘诊断研究重新连接回变换器与功率模块设计
+links: []
+featured: true
+lang: zh
+translationKey: project-pd-platform
+---
+## 项目目的
+
+在中压电力电子中，绝缘问题不是边缘话题，它往往直接决定一个变换器或功率模块方案能否真正走向硬件实现。
+
+## 包含内容
+
+- 方波高压测试思路
+- 局部放电行为观测平台
+- 将绝缘数据反馈到工程设计的研究框架
+- 面向后续绝缘约束设计的实验基础
+
+## 当前方向
+
+这个平台正在被打造成一个研究工具，用来回答绝缘何时会成为系统瓶颈，以及这些约束应该如何反过来影响变换器和模块设计。

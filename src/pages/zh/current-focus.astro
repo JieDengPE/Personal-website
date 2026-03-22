@@ -1,67 +1,87 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import { getSiteConfig } from '../../lib/content';
 
 const locale = 'zh' as const;
 const site = await getSiteConfig(locale);
-const projects = (await getCollection('projects', ({ data }) => data.lang === locale)).filter(
-	(project) => project.data.status !== 'completed',
-);
+const projects = site.currentFocus.projects;
 ---
 
-<BaseLayout locale={locale} alternatePath="/current-focus/" title={`当前研究 | ${site.name}`}>
-	<main class="wrapper page-main stack gap-12">
+<BaseLayout
+	locale={locale}
+	alternatePath="/current-focus/"
+	title={`当前研究 | ${site.name}`}
+	description={site.currentFocus.importance}
+>
+	<main class="wrapper page-main stack gap-16">
 		<SectionHeading
 			eyebrow="Current Focus"
 			title="我现在在研究什么，以及它为什么重要"
-			intro="这页的目的很直接：先回答当前主研究问题是什么，再说明它如何被落到真实系统和实验平台中。"
+			intro="这一页刻意保持直接和清晰，让第一次访问的人可以迅速理解当前研究主题、主要项目分支，以及它们整体指向的系统目标。"
 		/>
 
-		<section class="cards-grid three">
-			<div class="surface-card focus-card">
+		<section class="surface-card focus-overview">
+			<div class="stack gap-4">
 				<span class="meta-chip warm">研究主题</span>
-				<p>{site.currentFocus.theme}</p>
+				<h2>{site.currentFocus.theme}</h2>
+				<p class="lede">{site.currentFocus.now}</p>
 			</div>
-			<div class="surface-card focus-card">
-				<span class="meta-chip">研究意义</span>
-				<p>{site.currentFocus.importance}</p>
-			</div>
-			<div class="surface-card focus-card">
-				<span class="meta-chip">当前进展</span>
-				<p>{site.currentFocus.now}</p>
-			</div>
+			<ul class="tag-list">
+				{site.researchAreas.map((area) => <li class="tag">{area}</li>)}
+			</ul>
 		</section>
 
-		<section class="stack gap-6">
-			<SectionHeading eyebrow="Active Projects" title="正在推进的项目主线" />
-			<div class="cards-grid three">
-				{projects.slice(0, 3).map((project) => <ProjectCard project={project} locale={locale} />)}
-			</div>
+		<section class="cards-grid three">
+			{
+				projects.map((project) => (
+					<article class="surface-card project-brief stack gap-4">
+						<div class="project-brief-meta">
+							<span class="meta-chip warm">{project.status}</span>
+						</div>
+						<div class="stack gap-2">
+							<h3>{project.title}</h3>
+							<p>{project.summary}</p>
+						</div>
+					</article>
+				))
+			}
 		</section>
 
 		<section class="cards-grid two">
-			<div class="surface-card focus-card stack gap-4">
-				<h3>方法与平台</h3>
-				<ul class="focus-list">
-					{site.currentFocus.methods.map((item) => <li>{item}</li>)}
-				</ul>
-			</div>
-			<div class="surface-card focus-card stack gap-4">
-				<h3>近期目标</h3>
+			<article class="surface-card focus-card stack gap-4">
+				<span class="meta-chip">研究意义</span>
+				<p>{site.currentFocus.importance}</p>
+			</article>
+			<article class="surface-card focus-card stack gap-4">
+				<span class="meta-chip">近期目标</span>
 				<ul class="focus-list">
 					{site.currentFocus.goals.map((item) => <li>{item}</li>)}
 				</ul>
-			</div>
+			</article>
 		</section>
 	</main>
 </BaseLayout>
 
 <style>
+	.focus-overview,
+	.project-brief,
 	.focus-card {
-		padding: 1.25rem;
+		padding: 1.45rem;
+	}
+
+	.project-brief {
+		min-height: 100%;
+	}
+
+	.project-brief p,
+	.focus-card p {
+		color: var(--text-muted);
+	}
+
+	.project-brief-meta {
+		display: flex;
+		justify-content: flex-start;
 	}
 
 	.focus-list {

@@ -1,43 +1,42 @@
-﻿---
-title: 模块化双向变换器平台
-routeSlug: modular-bidirectional-converter-platform
+---
+title: 中压固态变压器变换器与变压器协同设计
+routeSlug: medium-voltage-sst-converter-transformer-codesign
 order: 1
 status: active
-period: 2025 - 至今
-domain: 功率变换实验平台
+period: 2024 - 至今
+domain: 中压能量变换
 stack:
-  - SiC 器件
-  - DSP 控制
-  - MATLAB / Simulink
-  - PLECS
-  - 示波器验证
+  - 固态变压器拓扑
+  - 变压器协同设计
+  - 系统建模
+  - 高频磁性器件
+  - 实验验证规划
 keywords:
-  - 双向变换器
-  - 硬件平台
-  - 控制验证
-summary: 这个平台的目标是为拓扑比较、传感接入和实验验证提供统一的硬件基础，使后续研究更加可重复、可扩展。
+  - 固态变压器
+  - 中压
+  - 变压器设计
+  - 系统协同设计
+summary: 围绕单端口和双端口固态变压器架构开展研究，并将变压器约束、系统集成方式和整体性能权衡放在同一框架内考虑。
 highlights:
-  - 用统一测量接口减少实验之间的重复搭建成本
-  - 用标准化上电流程更早发现硬件问题
-  - 支持多种控制策略对比，而不需要每次重搭平台
-links:
-  - label: 仓库占位链接
-    href: https://github.com/your-username/modular-bidirectional-converter-platform
+  - 不把变换器和变压器当作彼此独立的问题分别优化
+  - 在中压条件下同时权衡效率、绝缘、集成与功率密度
+  - 面向未来可落地的 SST 系统，而不是停留在概念层面
+links: []
 featured: true
 lang: zh
-translationKey: project-modular-platform
+translationKey: project-mv-sst
 ---
 ## 项目意义
 
-这个项目代表了我很看重的一类研究基础设施建设思路：不是一次性的样机，而是可以支撑后续比较、迭代和文档沉淀的平台。
+固态变压器的潜力不只在于效率提升，更在于它可能重塑未来能源接口的形态。但真正困难的地方在于系统集成，变换器架构、变压器约束、绝缘问题和封装实现不能被割裂开来看。
 
 ## 当前关注点
 
-- 功率级的稳定集成
-- 更利于测量与调试的硬件布局
-- 可重复执行的上电与下电流程
-- 让仿真假设更顺畅地过渡到硬件实现
+- 单端口与双端口 SST 结构
+- 变压器约束下的系统级权衡
+- 面向中压实现的研究路径设计
+- 能够超越仿真、走向实验的平台化思路
 
-## 后续方向
+## 当前方向
 
-下一步会继续增强平台的可观测性和文档化程度，让它真正成为后续实验的共用基础，而不是某一个课题的临时原型。
+下一步目标是把架构探索进一步推进到有实验支撑的系统设计上，让 SST 研究更接近真实可部署的中压应用场景。

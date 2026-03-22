@@ -1,21 +1,22 @@
 ---
-title: PhD and Platform Building
+title: PhD and Medium-Voltage Systems Research
 routeSlug: phd-platform-building
 order: 3
-period: 20XX - Present
-institution: "[University Name]"
+period: 2024 - Present
+institution: "Arizona State University, Phoenix, Arizona, United States"
 role: PhD Researcher
-summary: The current stage focuses on translating research ideas into modular platforms, digital control workflows, and better laboratory repeatability.
+summary: The PhD stage focuses on medium-voltage solid-state transformers, transformer co-design, insulation-aware auxiliaries, power modules, and experimental platforms that connect ideas to deployable systems.
 projects:
-  - Modular bidirectional converter platform
-  - Digital control validation workflow
-  - Wide-bandgap device evaluation rig
+  - Medium-voltage SST converter and transformer co-design
+  - High-isolation auxiliary power supply design
+  - Medium-voltage GaN and high-voltage SiC power module design
+  - Square-wave partial-discharge platform and AI-assisted design exploration
 skills:
-  - Research planning
-  - Converter prototyping
-  - Firmware validation
-  - Documentation systems
+  - System-level research planning
+  - Insulation-aware converter design
+  - Power module and packaging research
+  - Experimental platform development
 lang: en
 translationKey: timeline-phd
 ---
-My PhD work is where the technical threads come together: converter design, control implementation, debugging discipline, and the habit of documenting systems so they scale beyond a single experiment.
+My current work brings multiple technical threads together at once: converter architecture, transformer constraints, insulation behavior, module design, and the experimental discipline needed to make medium-voltage research credible.

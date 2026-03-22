@@ -16,8 +16,8 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === lo
 	<main class="wrapper page-main stack gap-12">
 		<SectionHeading
 			eyebrow="Projects"
-			title="科研项目、实验平台与流程资产"
-			intro="这里不仅展示硬件平台，也展示控制实现流程、文档体系以及支持整体研究方向的工程基础设施。"
+			title="科研项目、实验平台与方向分支"
+			intro="这里汇总了当前研究方向中的关键项目，包括中压变换器、辅助电源、功率模块、绝缘实验平台以及 AI 辅助设计探索。"
 		/>
 		<div class="cards-grid three">
 			{projects.map((project) => <ProjectCard project={project} locale={locale} />)}

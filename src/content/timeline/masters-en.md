@@ -2,20 +2,20 @@
 title: Master's Research Expansion
 routeSlug: masters-research-expansion
 order: 2
-period: 20XX - 20XX
-institution: "[University Name]"
+period: 2021 - 2024
+institution: "Hebei University of Technology, Tianjin, China"
 role: M.Eng. Researcher
-summary: Shifted from coursework-heavy learning to research-oriented work, with stronger focus on converter topologies, modeling, and practical control implementation.
+summary: Moved into research-oriented work centered on a high-frequency three-phase T-type three-level grid-connected inverter and the deeper converter theory behind it.
 projects:
-  - Converter modeling and compensation studies
-  - Simulation-to-hardware comparison exercises
-  - Technical note writing for reusable lab procedures
+  - Three-phase high-frequency T-type three-level grid-connected inverter above 200 kHz
+  - Soft-switching studies for high-frequency converter operation
+  - Research documentation and technical writing for reusable lab knowledge
 skills:
-  - Small-signal modeling
-  - Compensation design
-  - PLECS
-  - Technical documentation
+  - Research writing
+  - Soft-switching techniques
+  - Three-level converter technology
+  - High-frequency converter research workflow
 lang: en
 translationKey: timeline-masters
 ---
-During this stage, I moved from learning existing methods to building my own working process: model carefully, validate deliberately, and document what actually helps future experiments.
+This stage taught me how to turn a hard technical topic into a real research workflow: define the question clearly, build evidence carefully, and write in a way that others can build on.

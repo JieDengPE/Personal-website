@@ -27,7 +27,7 @@ export const localizedLabels = {
 		labManuals: 'Lab manuals',
 	},
 	zh: {
-		brandRole: '电力电子方向博士研究者',
+		brandRole: '电力电子博士研究者',
 		navigation: [
 			{ label: '首页', segment: '' },
 			{ label: '时间线', segment: 'timeline' },
@@ -39,7 +39,7 @@ export const localizedLabels = {
 			{ label: '论文与报告', segment: 'publications' },
 			{ label: '简历', segment: 'cv' },
 		],
-		footerBuiltWith: '基于 Astro 搭建的双语科研作品站。',
+		footerBuiltWith: '基于 Astro 构建的双语科研个人站。',
 		switchLabel: '语言',
 		readMore: '继续阅读',
 		viewProject: '查看项目详情',

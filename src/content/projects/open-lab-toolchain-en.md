@@ -1,29 +1,42 @@
 ---
-title: Open Lab Documentation Toolchain
-routeSlug: open-lab-documentation-toolchain
-order: 4
-status: completed
-period: 2023 - 2025
-domain: Research operations
+title: Square-Wave Partial-Discharge Experimental Platform
+routeSlug: square-wave-partial-discharge-experimental-platform
+order: 5
+status: active
+period: 2024 - Present
+domain: Insulation and diagnostics
 stack:
-  - Markdown
-  - Git workflows
-  - structured experiment logs
-  - reusable templates
+  - Partial discharge
+  - Square-wave excitation
+  - High-voltage experimentation
+  - Measurement platform
+  - Insulation behavior
 keywords:
-  - documentation
-  - lab workflow
-  - knowledge base
-summary: A documentation-first workflow for keeping experiment notes, setup guides, and troubleshooting records consistent across projects.
+  - partial discharge
+  - insulation
+  - square wave
+  - experimental platform
+summary: Building an experimental platform to study insulation behavior and partial-discharge phenomena under square-wave excitation relevant to modern power-electronic systems.
 highlights:
-  - Separates reflective writing from step-by-step manuals
-  - Improves handoff and future reuse of experimental knowledge
-  - Keeps technical decisions searchable and versioned
-links:
-  - label: Documentation starter placeholder
-    href: https://github.com/your-username/open-lab-documentation-toolchain
-featured: false
+  - Bringing insulation questions closer to real converter stress conditions
+  - Creating experimental evidence for design decisions that cannot rely on intuition alone
+  - Connecting diagnostics and insulation research back to converter and module design
+links: []
+featured: true
 lang: en
-translationKey: project-open-lab-toolchain
+translationKey: project-pd-platform
 ---
-This project is less about a single hardware result and more about research operations. Clear documentation changes how quickly a lab can repeat, compare, and extend technical work.
+## Project purpose
+
+At medium voltage, insulation behavior is not a side topic. It often sets hard limits on what converter and module concepts can become real hardware.
+
+## What it includes
+
+- Square-wave high-voltage test concepts
+- Platform design for observing partial-discharge behavior
+- Research structure for linking insulation data to engineering choices
+- A foundation for future insulation-aware platform development
+
+## Current direction
+
+The platform is being shaped into a research tool that helps explain when insulation becomes the limiting factor and how those limits should influence converter and module design.

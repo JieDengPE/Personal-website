@@ -1,29 +1,42 @@
 ---
-title: Wide-Bandgap Device Evaluation Rig
-routeSlug: wide-bandgap-device-evaluation-rig
+title: High-Switching-Frequency Medium-Voltage GaN Power Module Design
+routeSlug: high-switching-frequency-medium-voltage-gan-power-module-design
 order: 3
-status: ongoing
+status: active
 period: 2024 - Present
-domain: Device evaluation
+domain: Wide-bandgap module research
 stack:
-  - gate-drive design
-  - switching waveform analysis
-  - thermal observation
-  - comparative testing
+  - Medium-voltage GaN
+  - Power module design
+  - Gate-drive constraints
+  - Packaging strategy
+  - High-frequency switching
 keywords:
-  - wide-bandgap
-  - SiC
-  - switching analysis
-summary: A test environment for comparing switching behavior, gate-drive choices, and measurement strategy when working with higher-speed devices.
+  - GaN module
+  - medium voltage
+  - high frequency
+  - power density
+summary: Exploring how medium-voltage GaN-based modules can enable much higher switching frequency, compact integration, and new converter design possibilities.
 highlights:
-  - Supports controlled comparison between device and gate-drive settings
-  - Prioritizes waveform quality and practical debugging visibility
-  - Feeds lessons learned back into later converter prototypes
-links:
-  - label: Evaluation log placeholder
-    href: https://github.com/your-username/wide-bandgap-device-evaluation-rig
+  - Studying packaging and electric-field constraints alongside switching performance
+  - Targeting higher power density without losing sight of insulation and reliability
+  - Framing GaN modules as part of system innovation, not only device substitution
+links: []
 featured: true
 lang: en
-translationKey: project-wbg-rig
+translationKey: project-gan-module
 ---
-This rig helps answer practical questions that are easy to underestimate in early design stages: how switching behavior changes under real measurement conditions, which decisions improve robustness, and where documentation saves time later.
+## Why this matters
+
+GaN devices open the door to much higher switching frequency, but medium-voltage implementation remains challenging. The value is not only faster switching; it is the possibility of rethinking converter size, magnetics, and integration.
+
+## Focus areas
+
+- Module architecture for medium-voltage operation
+- Packaging, parasitics, and electric-field management
+- Integration tradeoffs between switching speed and insulation limits
+- System opportunities unlocked by higher-frequency operation
+
+## Current direction
+
+The current effort is to understand where GaN can genuinely change the medium-voltage converter design space and what module design choices are needed to make that practical.

@@ -1,38 +1,42 @@
 ---
-title: Digital Control Validation Workflow
-routeSlug: digital-control-validation-workflow
+title: High-Isolation Auxiliary Power Supply Design
+routeSlug: high-isolation-auxiliary-power-supply-design
 order: 2
 status: active
 period: 2024 - Present
-domain: Control implementation
+domain: Auxiliary power architecture
 stack:
-  - Controller discretization
-  - Embedded firmware
-  - Data logging
-  - Lab automation notes
+  - High isolation
+  - Auxiliary converters
+  - Insulation-aware layout
+  - Reliability constraints
+  - Medium-voltage support systems
 keywords:
-  - digital control
-  - validation workflow
-  - firmware
-summary: A practical workflow that links models, controller design, embedded code, and hardware checkpoints so tuning decisions remain traceable.
+  - auxiliary power supply
+  - high isolation
+  - medium voltage
+  - reliability
+summary: Designing auxiliary supplies that can support medium-voltage systems while meeting strict isolation, integration, and reliability requirements.
 highlights:
-  - Defines checkpoints between simulation, code generation, and hardware tuning
-  - Reduces ambiguity when results drift between model and experiment
-  - Produces cleaner records for later comparison and reuse
-links:
-  - label: Workflow notes placeholder
-    href: https://github.com/your-username/digital-control-validation-workflow
-featured: true
+  - Treating the auxiliary supply as a critical system enabler rather than a secondary block
+  - Studying how insulation demands reshape converter architecture and layout choices
+  - Supporting reliable gate driving, control electronics, and sensing in harsh environments
+links: []
+featured: false
 lang: en
-translationKey: project-digital-control-bench
+translationKey: project-aux-supply
 ---
-## Core idea
+## Project intent
 
-Good control results should not depend on memory alone. This workflow is about making each step explicit so tuning choices stay explainable when experiments become more complex.
+At medium voltage, auxiliary power is not a background utility. It strongly affects reliability, insulation design, physical integration, and the feasibility of the whole system.
 
-## Included elements
+## What I am testing
 
-- Model assumptions and parameter snapshots
-- Firmware checkpoints before high-power tests
-- Logging conventions for control-loop comparison
-- Short troubleshooting notes after each iteration
+- High-isolation auxiliary structures
+- Converter choices that work under demanding voltage stress
+- Practical integration with larger SST and module research directions
+- Architectures that remain realistic for future experimental deployment
+
+## Current direction
+
+The current direction is to build auxiliary-power designs that are electrically robust, experimentally credible, and aligned with the broader medium-voltage system architecture.
