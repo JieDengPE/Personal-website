@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import TimelineCard from '../components/TimelineCard.astro';
+import { getSiteConfig } from '../lib/content';
+
+const locale = 'en' as const;
+const site = await getSiteConfig(locale);
+const timeline = (await getCollection('timeline', ({ data }) => data.lang === locale)).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout locale={locale} alternatePath="/zh/timeline/" title={`Timeline | ${site.name}`}>
+	<main class="wrapper page-main stack gap-12">
+		<SectionHeading
+			eyebrow="Timeline"
+			title="How the research focus developed over time"
+			intro="The timeline is structured to show not only stages and institutions, but also the kinds of projects and skills that accumulated in each phase."
+		/>
+		<div class="stack gap-6">
+			{timeline.map((entry) => <TimelineCard entry={entry} />)}
+		</div>
+	</main>
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getSiteConfig } from '../../../lib/content';
+import { localizePath } from '../../../lib/site';
+
+interface Props {
+	entry: CollectionEntry<'projects'>;
+}
+
+export async function getStaticPaths() {
+	const entries = await getCollection('projects', ({ data }) => data.lang === 'zh');
+	return entries.map((entry) => ({
+		params: { slug: entry.data.routeSlug },
+		props: { entry },
+	}));
+}
+
+const locale = 'zh' as const;
+const site = await getSiteConfig(locale);
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const translation = (
+	await getCollection('projects', ({ data }) => data.lang === 'en' && data.translationKey === entry.data.translationKey)
+)[0];
+---
+
+<BaseLayout
+	locale={locale}
+	alternatePath={translation ? `/projects/${translation.data.routeSlug}/` : '/projects/'}
+	title={`${entry.data.title} | ${site.name}`}
+	description={entry.data.summary}
+>
+	<main class="wrapper page-main stack gap-10">
+		<a class="text-link" href={localizePath('zh', 'projects')}>返回项目页</a>
+		<section class="surface-card detail-card stack gap-6">
+			<div class="stack gap-4">
+				<div class="tag-list">
+					<span class="meta-chip warm">{entry.data.status}</span>
+					<span class="meta-chip">{entry.data.period}</span>
+					<span class="meta-chip">{entry.data.domain}</span>
+				</div>
+				<h1>{entry.data.title}</h1>
+				<p class="lede">{entry.data.summary}</p>
+				<ul class="tag-list">
+					{entry.data.stack.map((item) => <li class="tag">{item}</li>)}
+				</ul>
+			</div>
+			<div class="prose"><Content /></div>
+			<div class="stack gap-4">
+				<h3>重点内容</h3>
+				<ul class="focus-list">
+					{entry.data.highlights.map((highlight) => <li>{highlight}</li>)}
+				</ul>
+				<div class="tag-list">
+					{entry.data.links.map((link) => <a class="text-link" href={link.href}>{link.label}</a>)}
+				</div>
+			</div>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	.detail-card {
+		padding: 1.4rem;
+	}
+
+	.focus-list {
+		padding-left: 1rem;
+		display: grid;
+		gap: 0.55rem;
+	}
+</style>

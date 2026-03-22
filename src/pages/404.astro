@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { localizePath } from '../lib/site';
+---
+
+<BaseLayout locale="en" alternatePath="/zh/" title="Page not found">
+	<main class="wrapper page-main stack gap-8">
+		<h1>Page not found</h1>
+		<p class="lede">The page you tried to open does not exist yet. Use the main navigation or return to the homepage.</p>
+		<div class="cta-row">
+			<a class="button-link" href={localizePath('en')}>Back home</a>
+			<a class="button-link secondary" href={localizePath('zh')}>中文首页</a>
+		</div>
+	</main>
+</BaseLayout>
+
+<style>
+	.cta-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+	}
+</style>

@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { getSiteConfig } from '../lib/content';
+
+const locale = 'en' as const;
+const site = await getSiteConfig(locale);
+const projects = (await getCollection('projects', ({ data }) => data.lang === locale)).filter(
+	(project) => project.data.status !== 'completed',
+);
+---
+
+<BaseLayout locale={locale} alternatePath="/zh/current-focus/" title={`Current Focus | ${site.name}`}>
+	<main class="wrapper page-main stack gap-12">
+		<SectionHeading
+			eyebrow="Current Focus"
+			title="What I am researching now and why it matters"
+			intro="This page answers a simple question first: what is the active research problem, and how is it being turned into real systems and experiments?"
+		/>
+
+		<section class="cards-grid three">
+			<div class="surface-card focus-card">
+				<span class="meta-chip warm">Research Theme</span>
+				<p>{site.currentFocus.theme}</p>
+			</div>
+			<div class="surface-card focus-card">
+				<span class="meta-chip">Why it matters</span>
+				<p>{site.currentFocus.importance}</p>
+			</div>
+			<div class="surface-card focus-card">
+				<span class="meta-chip">Now in progress</span>
+				<p>{site.currentFocus.now}</p>
+			</div>
+		</section>
+
+		<section class="stack gap-6">
+			<SectionHeading eyebrow="Active Projects" title="Project threads" />
+			<div class="cards-grid three">
+				{projects.slice(0, 3).map((project) => <ProjectCard project={project} locale={locale} />)}
+			</div>
+		</section>
+
+		<section class="cards-grid two">
+			<div class="surface-card focus-card stack gap-4">
+				<h3>Methods and platforms</h3>
+				<ul class="focus-list">
+					{site.currentFocus.methods.map((item) => <li>{item}</li>)}
+				</ul>
+			</div>
+			<div class="surface-card focus-card stack gap-4">
+				<h3>Near-term goals</h3>
+				<ul class="focus-list">
+					{site.currentFocus.goals.map((item) => <li>{item}</li>)}
+				</ul>
+			</div>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	.focus-card {
+		padding: 1.25rem;
+	}
+
+	.focus-list {
+		padding-left: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+</style>

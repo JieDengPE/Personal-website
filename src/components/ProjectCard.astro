@@ -1,0 +1,74 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../lib/site';
+import { localizePath, localizedLabels } from '../lib/site';
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+	locale: Locale;
+}
+
+const { project, locale } = Astro.props;
+const labels = localizedLabels[locale];
+const statusLabels = {
+	en: { active: 'Active', ongoing: 'Ongoing', completed: 'Completed' },
+	zh: { active: '进行中', ongoing: '持续推进', completed: '已完成' },
+};
+---
+
+<article class="surface-card project-card">
+	<div class="meta-row">
+		<span class="meta-chip warm">{statusLabels[locale][project.data.status]}</span>
+		<span class="meta-chip">{project.data.period}</span>
+	</div>
+	<div class="stack gap-4">
+		<div class="stack gap-2">
+			<p class="project-domain">{project.data.domain}</p>
+			<h3>{project.data.title}</h3>
+			<p>{project.data.summary}</p>
+		</div>
+
+		<ul class="tag-list">
+			{project.data.keywords.slice(0, 4).map((keyword) => <li class="tag">{keyword}</li>)}
+		</ul>
+
+		<ul class="project-highlights">
+			{project.data.highlights.slice(0, 2).map((highlight) => <li>{highlight}</li>)}
+		</ul>
+
+		<a class="text-link" href={localizePath(locale, `projects/${project.data.routeSlug}`)}>
+			{labels.viewProject}
+		</a>
+	</div>
+</article>
+
+<style>
+	.project-card {
+		padding: 1.4rem;
+	}
+
+	.meta-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		margin-bottom: 1rem;
+	}
+
+	.project-domain {
+		font-size: var(--text-sm);
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--accent-alt);
+		font-family: var(--font-code);
+	}
+
+	.project-highlights {
+		padding-left: 1.15rem;
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.project-highlights li {
+		color: var(--text-muted);
+	}
+</style>

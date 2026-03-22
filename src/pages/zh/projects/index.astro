@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import { getSiteConfig } from '../../../lib/content';
+
+const locale = 'zh' as const;
+const site = await getSiteConfig(locale);
+const projects = (await getCollection('projects', ({ data }) => data.lang === locale)).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout locale={locale} alternatePath="/projects/" title={`项目 | ${site.name}`}>
+	<main class="wrapper page-main stack gap-12">
+		<SectionHeading
+			eyebrow="Projects"
+			title="科研项目、实验平台与流程资产"
+			intro="这里不仅展示硬件平台，也展示控制实现流程、文档体系以及支持整体研究方向的工程基础设施。"
+		/>
+		<div class="cards-grid three">
+			{projects.map((project) => <ProjectCard project={project} locale={locale} />)}
+		</div>
+	</main>
+</BaseLayout>

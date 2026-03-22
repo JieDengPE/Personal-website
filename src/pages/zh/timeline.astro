@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import TimelineCard from '../../components/TimelineCard.astro';
+import { getSiteConfig } from '../../lib/content';
+
+const locale = 'zh' as const;
+const site = await getSiteConfig(locale);
+const timeline = (await getCollection('timeline', ({ data }) => data.lang === locale)).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout locale={locale} alternatePath="/timeline/" title={`时间线 | ${site.name}`}>
+	<main class="wrapper page-main stack gap-12">
+		<SectionHeading
+			eyebrow="Timeline"
+			title="从本科到博士的研究轨迹"
+			intro="这里不仅展示阶段与学校，也更强调每个阶段做过什么项目、积累了哪些能力，以及研究重心是如何逐步演化的。"
+		/>
+		<div class="stack gap-6">
+			{timeline.map((entry) => <TimelineCard entry={entry} />)}
+		</div>
+	</main>
+</BaseLayout>

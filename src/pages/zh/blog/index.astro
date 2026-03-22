@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import EntryCard from '../../../components/EntryCard.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import { getSiteConfig } from '../../../lib/content';
+import { localizePath } from '../../../lib/site';
+
+const locale = 'zh' as const;
+const site = await getSiteConfig(locale);
+const posts = (await getCollection('blog', ({ data }) => data.lang === locale && !data.draft)).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const formatDate = (date: Date) =>
+	date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<BaseLayout locale={locale} alternatePath="/blog/" title={`博客 | ${site.name}`}>
+	<main class="wrapper page-main stack gap-12">
+		<SectionHeading
+			eyebrow="Blog"
+			title="研究思考、技术记录与阶段总结"
+			intro="这里更偏向观点、方向判断、阅读笔记和简短技术思考，而不是步骤型操作文档。"
+		/>
+		<div class="cards-grid two">
+			{
+				posts.map((post) => (
+					<EntryCard
+						title={post.data.title}
+						summary={post.data.summary}
+						meta={formatDate(post.data.date)}
+						tags={post.data.tags}
+						href={localizePath(locale, `blog/${post.data.routeSlug}`)}
+						ctaLabel="继续阅读"
+					/>
+				))
+			}
+		</div>
+	</main>
+</BaseLayout>

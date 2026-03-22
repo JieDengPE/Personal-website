@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	entry: CollectionEntry<'timeline'>;
+}
+
+const { entry } = Astro.props;
+---
+
+<article class="surface-card timeline-card">
+	<div class="timeline-rail">
+		<span class="timeline-order mono">{String(entry.data.order).padStart(2, '0')}</span>
+		<div class="timeline-line" />
+	</div>
+	<div class="stack gap-4">
+		<div class="stack gap-2">
+			<p class="timeline-period mono">{entry.data.period}</p>
+			<h3>{entry.data.title}</h3>
+			<p class="timeline-role">{entry.data.role} · {entry.data.institution}</p>
+			<p>{entry.data.summary}</p>
+		</div>
+		<div class="stack gap-2">
+			<ul class="tag-list">
+				{entry.data.skills.map((skill) => <li class="tag">{skill}</li>)}
+			</ul>
+			<ul class="timeline-projects">
+				{entry.data.projects.map((project) => <li>{project}</li>)}
+			</ul>
+		</div>
+	</div>
+</article>
+
+<style>
+	.timeline-card {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1rem;
+		padding: 1.4rem;
+	}
+
+	.timeline-rail {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.timeline-order {
+		color: var(--accent-regular);
+	}
+
+	.timeline-line {
+		inline-size: 1px;
+		flex: 1;
+		background: linear-gradient(180deg, var(--accent-alt), transparent);
+	}
+
+	.timeline-period,
+	.timeline-role {
+		color: var(--text-muted);
+	}
+
+	.timeline-projects {
+		padding-left: 1rem;
+		display: grid;
+		gap: 0.45rem;
+	}
+</style>

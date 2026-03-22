@@ -1,0 +1,32 @@
+---
+interface Props {
+	title: string;
+	summary: string;
+	href: string;
+	meta: string;
+	tags?: string[];
+	ctaLabel?: string;
+}
+
+const { title, summary, href, meta, tags = [], ctaLabel = 'Read' } = Astro.props;
+---
+
+<article class="surface-card entry-card">
+	<div class="stack gap-4">
+		<p class="mono muted">{meta}</p>
+		<h3>{title}</h3>
+		<p>{summary}</p>
+		{tags.length > 0 && (
+			<ul class="tag-list">
+				{tags.map((tag) => <li class="tag">{tag}</li>)}
+			</ul>
+		)}
+		<a class="text-link" href={href}>{ctaLabel}</a>
+	</div>
+</article>
+
+<style>
+	.entry-card {
+		padding: 1.4rem;
+	}
+</style>

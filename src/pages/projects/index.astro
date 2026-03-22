@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { getSiteConfig } from '../../lib/content';
+
+const locale = 'en' as const;
+const site = await getSiteConfig(locale);
+const projects = (await getCollection('projects', ({ data }) => data.lang === locale)).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout locale={locale} alternatePath="/zh/projects/" title={`Projects | ${site.name}`}>
+	<main class="wrapper page-main stack gap-12">
+		<SectionHeading
+			eyebrow="Projects"
+			title="Research projects, platforms, and workflow assets"
+			intro="The projects section combines hardware platforms, control workflows, and documentation systems that support the broader research direction."
+		/>
+		<div class="cards-grid three">
+			{projects.map((project) => <ProjectCard project={project} locale={locale} />)}
+		</div>
+	</main>
+</BaseLayout>

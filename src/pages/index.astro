@@ -1,0 +1,303 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EntryCard from '../components/EntryCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import TimelineCard from '../components/TimelineCard.astro';
+import { getSiteConfig } from '../lib/content';
+import { localizePath } from '../lib/site';
+
+const locale = 'en' as const;
+const site = await getSiteConfig(locale);
+
+const projects = (await getCollection('projects', ({ data }) => data.lang === locale)).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+const featuredProjects = projects.filter((project) =>
+	site.featuredProjects.includes(project.data.translationKey),
+);
+const timeline = (await getCollection('timeline', ({ data }) => data.lang === locale)).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+const posts = (await getCollection('blog', ({ data }) => data.lang === locale && !data.draft)).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const manuals = (await getCollection('manuals', ({ data }) => data.lang === locale)).sort(
+	(a, b) => b.data.updatedAt.valueOf() - a.data.updatedAt.valueOf(),
+);
+
+const formatDate = (date: Date) =>
+	date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<BaseLayout
+	locale={locale}
+	alternatePath="/zh/"
+	title={`${site.name} | ${site.title}`}
+	description={site.tagline}
+>
+	<main class="wrapper page-main stack gap-20">
+		<section class="hero-grid">
+			<div class="stack gap-8">
+				<div class="stack gap-4">
+					<span class="eyebrow">Power Electronics Research</span>
+					<h1>{site.hero.headline}</h1>
+					<p class="hero-summary">{site.hero.subheadline}</p>
+				</div>
+
+				<ul class="tag-list">
+					{site.hero.keywords.map((keyword) => <li class="tag">{keyword}</li>)}
+				</ul>
+
+				<div class="hero-meta">
+					<div>
+						<span class="meta-label">Role</span>
+						<p>{site.title}</p>
+					</div>
+					<div>
+						<span class="meta-label">Base</span>
+						<p>{site.location}</p>
+					</div>
+				</div>
+
+				<div class="cta-row">
+					<a class="button-link" href={localizePath(locale, 'current-focus')}>View current focus</a>
+					<a class="button-link secondary" href={localizePath(locale, 'timeline')}>Explore timeline</a>
+				</div>
+			</div>
+
+			<div class="surface-card hero-panel">
+				<div class="hero-panel-head">
+					<p class="mono">RESEARCH SIGNAL</p>
+					<p>30-second overview</p>
+				</div>
+				<div class="wave-grid">
+					<div class="wave wave-a" />
+					<div class="wave wave-b" />
+					<div class="wave wave-c" />
+				</div>
+				<div class="stats-grid">
+					{
+						site.hero.quickFacts.map((fact) => (
+							<div class="stat-card">
+								<span class="mono muted">{fact.label}</span>
+								<h3>{fact.value}</h3>
+								<p>{fact.detail}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="page-section stack gap-8">
+			<SectionHeading
+				eyebrow="Current Focus"
+				title="What I am working on right now"
+				intro="This section is designed so a first-time visitor can understand the active research theme, why it matters, and what is moving in the lab today."
+			/>
+			<div class="cards-grid three">
+				<div class="surface-card info-card">
+					<span class="meta-chip warm">Research Theme</span>
+					<p>{site.currentFocus.theme}</p>
+				</div>
+				<div class="surface-card info-card">
+					<span class="meta-chip">Why it matters</span>
+					<p>{site.currentFocus.importance}</p>
+				</div>
+				<div class="surface-card info-card">
+					<span class="meta-chip">In the lab now</span>
+					<p>{site.currentFocus.now}</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="page-section stack gap-8">
+			<SectionHeading
+				eyebrow="Featured Projects"
+				title="Projects that define the current direction"
+				intro="These projects show how the research is organized around platforms, validation workflows, and engineering reuse."
+			/>
+			<div class="cards-grid three">
+				{featuredProjects.map((project) => <ProjectCard project={project} locale={locale} />)}
+			</div>
+		</section>
+
+		<section class="page-section stack gap-8">
+			<SectionHeading
+				eyebrow="Journey"
+				title="Research timeline from foundations to platform building"
+				intro="A compact view of how the focus evolved from undergraduate training to a PhD-stage research workflow."
+			/>
+			<div class="stack gap-6">
+				{timeline.map((entry) => <TimelineCard entry={entry} />)}
+			</div>
+		</section>
+
+		<section class="page-section stack gap-8">
+			<SectionHeading
+				eyebrow="Writing and Manuals"
+				title="Thinking, notes, and lab-ready documentation"
+				intro="Blog posts are used for reflection and technical notes. Manuals stay procedural, practical, and reusable."
+			/>
+			<div class="cards-grid two">
+				<div class="stack gap-4">
+					<h3>Latest writing</h3>
+					{
+						posts.slice(0, 2).map((post) => (
+							<EntryCard
+								title={post.data.title}
+								summary={post.data.summary}
+								meta={formatDate(post.data.date)}
+								tags={post.data.tags}
+								href={localizePath(locale, `blog/${post.data.routeSlug}`)}
+								ctaLabel="Read more"
+							/>
+						))
+					}
+				</div>
+				<div class="stack gap-4">
+					<h3>Manuals</h3>
+					{
+						manuals.slice(0, 2).map((manual) => (
+							<EntryCard
+								title={manual.data.title}
+								summary={manual.data.summary}
+								meta={`${manual.data.tool_or_platform} · ${formatDate(manual.data.updatedAt)}`}
+								tags={manual.data.tags}
+								href={localizePath(locale, `manuals/${manual.data.routeSlug}`)}
+								ctaLabel="Open manual"
+							/>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="surface-card contact-panel">
+			<div class="stack gap-4">
+				<span class="eyebrow">Contact</span>
+				<h2>{site.contact.title}</h2>
+				<p class="lede">{site.contact.text}</p>
+			</div>
+			<div class="cta-row">
+				<a class="button-link" href={`mailto:${site.email}`}>Email me</a>
+				<a class="button-link secondary" href={localizePath(locale, 'cv')}>View CV</a>
+			</div>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	.hero-grid {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.hero-summary {
+		font-size: var(--text-lg);
+		color: var(--text-muted);
+		max-width: 42rem;
+	}
+
+	.hero-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+	}
+
+	.meta-label {
+		display: block;
+		font-family: var(--font-code);
+		font-size: var(--text-sm);
+		color: var(--accent-alt);
+		margin-bottom: 0.25rem;
+	}
+
+	.cta-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+	}
+
+	.hero-panel {
+		padding: 1.4rem;
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.hero-panel-head {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		color: var(--text-muted);
+	}
+
+	.wave-grid {
+		display: grid;
+		gap: 0.85rem;
+		padding: 1rem 0;
+	}
+
+	.wave {
+		height: 4.5rem;
+		border-radius: 999rem;
+		background-size: 220% 100%;
+		animation: drift 9s linear infinite;
+	}
+
+	.wave-a {
+		background:
+			radial-gradient(circle at left, rgba(23, 196, 201, 0.45), transparent 28%),
+			linear-gradient(90deg, rgba(23, 196, 201, 0.08), rgba(23, 196, 201, 0.3), transparent);
+	}
+
+	.wave-b {
+		background:
+			radial-gradient(circle at 20% 50%, rgba(221, 122, 50, 0.4), transparent 24%),
+			linear-gradient(90deg, transparent, rgba(221, 122, 50, 0.3), rgba(23, 196, 201, 0.16));
+		animation-duration: 12s;
+	}
+
+	.wave-c {
+		background:
+			radial-gradient(circle at 60% 50%, rgba(23, 196, 201, 0.35), transparent 18%),
+			linear-gradient(90deg, rgba(23, 196, 201, 0.24), transparent, rgba(221, 122, 50, 0.22));
+		animation-duration: 10s;
+	}
+
+	.stat-card,
+	.info-card,
+	.contact-panel {
+		padding: 1.25rem;
+	}
+
+	.contact-panel {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	@keyframes drift {
+		from {
+			background-position: 0% 50%;
+		}
+		to {
+			background-position: 200% 50%;
+		}
+	}
+
+	@media (min-width: 62em) {
+		.hero-grid {
+			grid-template-columns: 1.3fr 0.9fr;
+			align-items: center;
+		}
+
+		.contact-panel {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+</style>

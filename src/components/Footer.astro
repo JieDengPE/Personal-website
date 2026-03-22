@@ -1,0 +1,88 @@
+---
+import type { Locale } from '../lib/site';
+import { localizedLabels } from '../lib/site';
+
+interface Props {
+	locale: Locale;
+	siteName: string;
+	socialLinks: Array<{ label: string; href: string }>;
+}
+
+const currentYear = new Date().getFullYear();
+const { locale, siteName, socialLinks } = Astro.props;
+const labels = localizedLabels[locale];
+---
+
+<footer class="wrapper site-footer">
+	<div class="group">
+		<p>{labels.footerBuiltWith}</p>
+		<p>&copy; {currentYear} {siteName}</p>
+	</div>
+	<p class="socials">
+		{
+			socialLinks.map(({ label, href }) => (
+				<a href={href} target={href.startsWith('mailto:') ? undefined : '_blank'} rel="noreferrer">
+					{label}
+				</a>
+			))
+		}
+	</p>
+</footer>
+
+<style>
+	.site-footer {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		margin-top: auto;
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+		color: var(--gray-400);
+		font-size: var(--text-sm);
+	}
+
+	.site-footer a {
+		color: var(--gray-300);
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.site-footer a:hover,
+	.site-footer a:focus {
+		text-decoration-color: currentColor;
+	}
+
+	.group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.socials {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	@media (min-width: 50em) {
+		.site-footer {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			padding-top: 4rem;
+			padding-bottom: 3rem;
+		}
+
+		.group {
+			flex-direction: row;
+			gap: 1rem;
+			flex-wrap: wrap;
+		}
+
+		.socials {
+			justify-content: flex-end;
+		}
+	}
+</style>

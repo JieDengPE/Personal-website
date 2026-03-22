@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { getSiteConfig } from '../lib/content';
+
+const locale = 'en' as const;
+const site = await getSiteConfig(locale);
+---
+
+<BaseLayout locale={locale} alternatePath="/zh/skills/" title={`Skills | ${site.name}`}>
+	<main class="wrapper page-main stack gap-12">
+		<SectionHeading
+			eyebrow="Skills"
+			title="Capabilities organized as engineering systems"
+			intro="Instead of listing isolated tools, this page groups skills by the way they support converter design, control implementation, and repeatable lab work."
+		/>
+		<div class="cards-grid three">
+			{
+				site.skillGroups.map((group) => (
+					<article class="surface-card skill-card">
+						<div class="stack gap-4">
+							<h3>{group.title}</h3>
+							<p>{group.description}</p>
+							<ul class="focus-list">
+								{group.items.map((item) => <li>{item}</li>)}
+							</ul>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</main>
+</BaseLayout>
+
+<style>
+	.skill-card {
+		padding: 1.25rem;
+	}
+
+	.focus-list {
+		padding-left: 1rem;
+		display: grid;
+		gap: 0.55rem;
+	}
+</style>

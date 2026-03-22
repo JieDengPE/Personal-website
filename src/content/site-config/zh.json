@@ -1,0 +1,168 @@
+{
+  "name": "[你的名字]",
+  "title": "电力电子方向博士研究者",
+  "tagline": "关注高效功率变换、数字控制以及可落地的实验验证流程。",
+  "defaultLocale": "en",
+  "location": "[城市, 国家]",
+  "email": "your.email@example.com",
+  "researchAreas": [
+    "双向功率变换器",
+    "电力电子数字控制",
+    "宽禁带器件应用",
+    "建模分析与硬件验证"
+  ],
+  "hero": {
+    "headline": "我构建连接功率变换硬件、数字控制与实验验证的电力电子系统。",
+    "subheadline": "目前主要聚焦于高效率功率变换、数字控制实现，以及把研究问题真正推进到可重复实验平台上的全过程。",
+    "keywords": [
+      "power converters",
+      "digital control",
+      "wide-bandgap devices",
+      "modeling",
+      "hardware validation"
+    ],
+    "quickFacts": [
+      {
+        "label": "当前重点",
+        "value": "变换器实验平台",
+        "detail": "搭建模块化硬件平台，支持可重复、可比较的实验验证。"
+      },
+      {
+        "label": "工作方式",
+        "value": "模型 -> 代码 -> 硬件",
+        "detail": "把仿真、嵌入式控制与硬件调试连接成一条闭环流程。"
+      },
+      {
+        "label": "研究意义",
+        "value": "效率与可靠性",
+        "detail": "让先进电力电子研究更容易被验证、复现与延展。"
+      }
+    ]
+  },
+  "currentFocus": {
+    "theme": "研究能够从建模走到硬件验证、并在实验中保持鲁棒性的变换器结构与控制流程。",
+    "importance": "电力电子研究只有真正落到可测量、可调试、可复现的实验平台上，才更有工程价值与延展性。",
+    "now": "当前工作重点是模块化变换器平台、数字控制实现流程，以及让调试与比较更高效的实验验证方法。",
+    "projects": [
+      {
+        "title": "模块化双向变换器平台",
+        "status": "进行中",
+        "summary": "构建一个便于拓扑切换、传感接入和控制策略对比的统一实验平台。"
+      },
+      {
+        "title": "数字控制验证工作流",
+        "status": "进行中",
+        "summary": "建立从仿真模型到嵌入式代码的可重复路径，并加入面向硬件调试的关键检查点。"
+      },
+      {
+        "title": "宽禁带器件实验评估平台",
+        "status": "持续推进",
+        "summary": "在真实实验条件下评估开关行为、热设计因素以及驱动策略选择。"
+      }
+    ],
+    "methods": [
+      "状态空间与平均模型分析",
+      "PLECS / MATLAB-Simulink 仿真验证",
+      "DSP 与嵌入式控制实现",
+      "基于示波器的调试与波形诊断",
+      "标准化上电流程与实验文档整理"
+    ],
+    "goals": [
+      "缩短仿真结果与硬件结果之间的差距",
+      "沉淀可复用的变换器与测试基础设施",
+      "把实验流程文档化，提升后续研究效率"
+    ]
+  },
+  "skillGroups": [
+    {
+      "title": "功率级设计",
+      "description": "围绕效率、可测性与安全调试来设计和搭建变换器硬件平台。",
+      "items": [
+        "DC-DC 与双向变换器拓扑",
+        "磁性元件与无源器件选型",
+        "驱动与保护电路考虑",
+        "兼顾热设计与布局的原型搭建"
+      ]
+    },
+    {
+      "title": "控制与建模",
+      "description": "从理论模型走向稳定控制实现，并保持可验证、可迭代。",
+      "items": [
+        "小信号与平均模型分析",
+        "数字控制器设计",
+        "补偿与参数整定流程",
+        "仿真结果与实验波形对照分析"
+      ]
+    },
+    {
+      "title": "软件与实验工作流",
+      "description": "把软件、固件、实验与技术写作组织成长期可积累的研究资产。",
+      "items": [
+        "MATLAB / Simulink / PLECS",
+        "嵌入式固件与测试仪器联动",
+        "版本化实验记录",
+        "软硬件操作手册与调试文档写作"
+      ]
+    }
+  ],
+  "featuredProjects": [
+    "project-modular-platform",
+    "project-digital-control-bench",
+    "project-wbg-rig"
+  ],
+  "socialLinks": [
+    {
+      "label": "GitHub",
+      "href": "https://github.com/your-username"
+    },
+    {
+      "label": "Google Scholar",
+      "href": "https://scholar.google.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/"
+    },
+    {
+      "label": "Email",
+      "href": "mailto:your.email@example.com"
+    }
+  ],
+  "cv": {
+    "profile": "这个网站优先按“研究作品集”来组织内容：先展示我现在在做什么，再展示成长轨迹、代表项目和长期积累下来的工程方法。",
+    "education": [
+      {
+        "stage": "博士",
+        "institution": "[学校名称]",
+        "period": "20XX - 至今",
+        "focus": "电力电子、变换器控制与实验验证"
+      },
+      {
+        "stage": "硕士",
+        "institution": "[学校名称]",
+        "period": "20XX - 20XX",
+        "focus": "先进功率变换与系统建模"
+      },
+      {
+        "stage": "本科",
+        "institution": "[学校名称]",
+        "period": "20XX - 20XX",
+        "focus": "电气工程基础与硬件实践"
+      }
+    ],
+    "strengths": [
+      "把抽象研究问题转化为可测试的工程问题",
+      "围绕测量与验证思路搭建变换器实验原型",
+      "把调试流程和实验经验沉淀成长期可复用文档"
+    ],
+    "collaboration": [
+      "欢迎围绕变换器设计、数字控制与实验验证展开交流合作",
+      "可参与原型设计、验证方案制定和技术文档整理",
+      "后续可以很自然地补充 PDF 简历下载入口"
+    ]
+  },
+  "contact": {
+    "title": "如果你也关注相关方向，欢迎联系交流。",
+    "text": "我很愿意围绕变换器设计、数字控制、实验平台建设以及技术文档沉淀等主题展开合作或讨论。"
+  }
+}

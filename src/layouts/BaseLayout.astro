@@ -1,0 +1,36 @@
+---
+import Footer from '../components/Footer.astro';
+import MainHead from '../components/MainHead.astro';
+import Nav from '../components/Nav.astro';
+import { getSiteConfig } from '../lib/content';
+import type { Locale } from '../lib/site';
+
+interface Props {
+	title?: string;
+	description?: string;
+	locale: Locale;
+	alternatePath?: string;
+	currentPath?: string;
+}
+
+const { title, description, locale, alternatePath, currentPath = Astro.url.pathname } = Astro.props;
+const site = await getSiteConfig(locale);
+---
+
+<html lang={locale}>
+	<head>
+		<MainHead title={title} description={description} />
+	</head>
+	<body>
+		<div class="site-shell">
+			<Nav
+				locale={locale}
+				currentPath={currentPath}
+				alternatePath={alternatePath}
+				siteName={site.name}
+			/>
+			<slot />
+			<Footer locale={locale} siteName={site.name} socialLinks={site.socialLinks} />
+		</div>
+	</body>
+</html>

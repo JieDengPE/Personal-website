@@ -1,0 +1,44 @@
+---
+import type { Locale } from '../lib/site';
+
+interface Props {
+	locale: Locale;
+	currentPath: string;
+	alternatePath?: string;
+}
+
+const { locale, currentPath, alternatePath } = Astro.props;
+const base = import.meta.env.BASE_URL === '/' ? '' : `/${import.meta.env.BASE_URL.replace(/^\/|\/$/g, '')}`;
+const withBase = (path: string) => (path.startsWith(base) ? path : `${base}${path}`.replace(/\/{2,}/g, '/'));
+const enPath = withBase(locale === 'en' ? currentPath : alternatePath ?? '/');
+const zhPath = withBase(locale === 'zh' ? currentPath : alternatePath ?? '/zh/');
+---
+
+<div class="locale-toggle" aria-label="Language switch">
+	<a href={enPath} aria-current={locale === 'en' ? 'page' : null}>EN</a>
+	<a href={zhPath} aria-current={locale === 'zh' ? 'page' : null}>中文</a>
+</div>
+
+<style>
+	.locale-toggle {
+		display: inline-flex;
+		padding: 0.25rem;
+		border-radius: 999rem;
+		background: rgba(0, 0, 0, 0.08);
+		border: 1px solid var(--surface-border);
+	}
+
+	.locale-toggle a {
+		padding: 0.45rem 0.8rem;
+		border-radius: 999rem;
+		text-decoration: none;
+		color: var(--gray-400);
+		font-family: var(--font-code);
+		font-size: var(--text-sm);
+	}
+
+	.locale-toggle a[aria-current='page'] {
+		background: rgba(23, 196, 201, 0.14);
+		color: var(--text-strong);
+	}
+</style>

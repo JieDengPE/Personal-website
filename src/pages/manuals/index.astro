@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntryCard from '../../components/EntryCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { getSiteConfig } from '../../lib/content';
+import { localizePath } from '../../lib/site';
+
+const locale = 'en' as const;
+const site = await getSiteConfig(locale);
+const manuals = (await getCollection('manuals', ({ data }) => data.lang === locale)).sort(
+	(a, b) => b.data.updatedAt.valueOf() - a.data.updatedAt.valueOf(),
+);
+const formatDate = (date: Date) =>
+	date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<BaseLayout locale={locale} alternatePath="/zh/manuals/" title={`Manuals | ${site.name}`}>
+	<main class="wrapper page-main stack gap-12">
+		<SectionHeading
+			eyebrow="Manuals"
+			title="Reusable software and hardware playbooks"
+			intro="Manuals are step-oriented references for lab setup, bring-up, debugging, and repeatable execution."
+		/>
+		<div class="cards-grid two">
+			{
+				manuals.map((manual) => (
+					<EntryCard
+						title={manual.data.title}
+						summary={manual.data.summary}
+						meta={`${manual.data.tool_or_platform} · ${formatDate(manual.data.updatedAt)}`}
+						tags={manual.data.tags}
+						href={localizePath(locale, `manuals/${manual.data.routeSlug}`)}
+						ctaLabel="Open manual"
+					/>
+				))
+			}
+		</div>
+	</main>
+</BaseLayout>
