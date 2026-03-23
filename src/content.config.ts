@@ -138,6 +138,10 @@ export const collections = {
 		loader: glob({ base: './src/content/publications', pattern: '**/*.md' }),
 		schema: z.object({
 			...contentFields,
+			order: z.number(),
+			themeKey: z.string(),
+			themeLabel: z.string(),
+			themeOrder: z.number(),
 			title: z.string(),
 			venue: z.string(),
 			year: z.number(),

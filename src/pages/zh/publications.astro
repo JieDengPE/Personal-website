@@ -6,38 +6,70 @@ import { getSiteConfig } from '../../lib/content';
 
 const locale = 'zh' as const;
 const site = await getSiteConfig(locale);
-const entries = (await getCollection('publications', ({ data }) => data.lang === locale)).sort(
-	(a, b) => b.data.year - a.data.year,
-);
+const entries = (await getCollection('publications', ({ data }) => data.lang === locale)).sort((a, b) => {
+	if (a.data.themeOrder !== b.data.themeOrder) return a.data.themeOrder - b.data.themeOrder;
+	if (a.data.year !== b.data.year) return b.data.year - a.data.year;
+	return b.data.order - a.data.order;
+});
+
+type PublicationGroup = {
+	key: string;
+	label: string;
+	themeOrder: number;
+	entries: typeof entries;
+};
+
+const groupedEntries = entries.reduce((map, entry) => {
+	const existing = map.get(entry.data.themeKey);
+	if (existing) {
+		existing.entries.push(entry);
+	} else {
+		map.set(entry.data.themeKey, {
+			key: entry.data.themeKey,
+			label: entry.data.themeLabel,
+			themeOrder: entry.data.themeOrder,
+			entries: [entry],
+		});
+	}
+	return map;
+}, new Map<string, PublicationGroup>());
+
+const groups = Array.from(groupedEntries.values()).sort((a, b) => a.themeOrder - b.themeOrder);
 ---
 
-<BaseLayout locale={locale} alternatePath="/publications/" title={`论文与报告 | ${site.name}`}>
+<BaseLayout locale={locale} alternatePath="/publications/" title={`论文 | ${site.name}`}>
 	<main class="wrapper page-main stack gap-12">
-		<SectionHeading
-			eyebrow="Publications"
-			title="论文、海报、报告与技术输出"
-			intro="这个栏目保持开放，既可以放会议论文，也可以放海报、内部汇报、研讨会材料或专利。"
-		/>
-		<div class="stack gap-6">
+		<SectionHeading eyebrow="Publications" title="论文" intro="按研究方向分组。" />
+
+		<div class="stack gap-10">
 			{
-				entries.map((entry) => (
-					<article class="surface-card pub-card">
-						<div class="stack gap-4">
-							<div class="pub-meta">
-								<span class="meta-chip warm">{entry.data.type}</span>
-								<span class="meta-chip">{String(entry.data.year)}</span>
-							</div>
-							<div class="stack gap-2">
-								<h3>{entry.data.title}</h3>
-								<p class="muted">{entry.data.venue}</p>
-								<p>{entry.data.summary}</p>
-								<p class="muted">{entry.data.authors.join(', ')}</p>
-							</div>
-							<div class="pub-links">
-								{entry.data.links.map((link) => <a class="text-link" href={link.href}>{link.label}</a>)}
-							</div>
+				groups.map((group) => (
+					<section class="stack gap-6">
+						<div class="theme-head">
+							<span class="meta-chip warm">{group.label}</span>
 						</div>
-					</article>
+
+						<div class="stack gap-6">
+							{group.entries.map((entry) => (
+								<article class="surface-card pub-card">
+									<div class="stack gap-4">
+										<div class="pub-meta">
+											<span class="meta-chip warm">{entry.data.type}</span>
+											<span class="meta-chip">{String(entry.data.year)}</span>
+										</div>
+										<div class="stack gap-2">
+											<h3>{entry.data.title}</h3>
+											<p class="muted">{entry.data.venue}</p>
+											<p class="muted">{entry.data.authors.join(', ')}</p>
+										</div>
+										<div class="pub-links">
+											{entry.data.links.map((link) => <a class="text-link" href={link.href}>{link.label}</a>)}
+										</div>
+									</div>
+								</article>
+							))}
+						</div>
+					</section>
 				))
 			}
 		</div>
