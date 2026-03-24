@@ -22,7 +22,7 @@ const zhPath = withBase(locale === 'zh' ? currentPath : alternatePath ?? '/zh/')
 <style>
 	.locale-toggle {
 		display: inline-flex;
-		padding: 0.22rem;
+		padding: 0.2rem;
 		border-radius: 999rem;
 		background: rgba(255, 255, 255, 0.04);
 		border: 1px solid var(--surface-border);
@@ -30,12 +30,19 @@ const zhPath = withBase(locale === 'zh' ? currentPath : alternatePath ?? '/zh/')
 	}
 
 	.locale-toggle a {
-		padding: 0.48rem 0.86rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-inline-size: 3.25rem;
+		padding: 0.44rem 0.78rem;
 		border-radius: 999rem;
 		text-decoration: none;
 		color: var(--text-muted);
-		font-family: var(--font-code);
-		font-size: var(--text-sm);
+		font-family: var(--font-body);
+		font-size: 0.92rem;
+		font-weight: 600;
+		line-height: 1;
+		white-space: nowrap;
 		transition:
 			background-color var(--theme-transition),
 			color var(--theme-transition),
@@ -47,4 +54,4 @@ const zhPath = withBase(locale === 'zh' ? currentPath : alternatePath ?? '/zh/')
 		color: var(--text-strong);
 		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 	}
- </style>
+</style>

@@ -1,45 +1,118 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import SkillBadge from '../components/SkillBadge.astro';
 import { getSiteConfig } from '../lib/content';
+import { getSkillsContent } from '../lib/skills';
 
 const locale = 'en' as const;
 const site = await getSiteConfig(locale);
+const skills = getSkillsContent(locale);
 ---
 
 <BaseLayout locale={locale} alternatePath="/zh/skills/" title={`Skills | ${site.name}`}>
 	<main class="wrapper page-main stack gap-12">
-		<SectionHeading
-			eyebrow="Skills"
-			title="Capabilities organized as engineering systems"
-			intro="Instead of listing isolated tools, this page groups skills by the way they support converter design, control implementation, and repeatable lab work."
-		/>
-		<div class="cards-grid three">
-			{
-				site.skillGroups.map((group) => (
-					<article class="surface-card skill-card">
-						<div class="stack gap-4">
-							<h3>{group.title}</h3>
-							<p>{group.description}</p>
-							<ul class="focus-list">
-								{group.items.map((item) => <li>{item}</li>)}
-							</ul>
-						</div>
-					</article>
-				))
-			}
-		</div>
+		<SectionHeading eyebrow={skills.eyebrow} title={skills.title} intro={skills.intro} />
+
+		<section class="skills-shell">
+			<div class="stack gap-6">
+				<div class="section-copy stack gap-3">
+					<span class="meta-chip warm">{skills.hardwareTitle}</span>
+					<h2>System-facing hardware capability</h2>
+					<p class="lede">{skills.hardwareIntro}</p>
+				</div>
+
+				<div class="cards-grid two">
+					{
+						skills.hardware.map((item) => (
+							<article class="surface-card hardware-card">
+								<div class="stack gap-4">
+									<h3>{item.title}</h3>
+									<p>{item.summary}</p>
+									<ul class="skill-points">
+										{item.highlights.map((highlight) => <li>{highlight}</li>)}
+									</ul>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</div>
+
+			<div class="stack gap-6">
+				<div class="section-copy stack gap-3">
+					<span class="meta-chip">{skills.softwareTitle}</span>
+					<h2>Software tools, grouped by workflow</h2>
+					<p class="lede">{skills.softwareIntro}</p>
+				</div>
+
+				<div class="software-grid">
+					{
+						skills.software.map((group) => (
+							<article class="surface-card software-card">
+								<div class="stack gap-4">
+									<div class="stack gap-2">
+										<h3>{group.title}</h3>
+										<p>{group.description}</p>
+									</div>
+									<div class="badge-grid">
+										{group.items.map((item) => <SkillBadge {...item} />)}
+									</div>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
 	</main>
 </BaseLayout>
 
 <style>
-	.skill-card {
-		padding: 1.25rem;
+	.skills-shell {
+		display: grid;
+		gap: 3rem;
 	}
 
-	.focus-list {
-		padding-left: 1rem;
+	.section-copy {
+		max-width: 48rem;
+	}
+
+	.hardware-card,
+	.software-card {
+		padding: 1.5rem;
+	}
+
+	.hardware-card p,
+	.software-card p {
+		color: var(--text-muted);
+	}
+
+	.skill-points {
 		display: grid;
-		gap: 0.55rem;
+		gap: 0.7rem;
+		padding-left: 1.05rem;
+	}
+
+	.badge-grid,
+	.software-grid {
+		display: grid;
+		gap: 0.95rem;
+	}
+
+	@media (min-width: 48em) {
+		.badge-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 72em) {
+		.skills-shell {
+			gap: 4rem;
+		}
+
+		.software-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
 	}
 </style>

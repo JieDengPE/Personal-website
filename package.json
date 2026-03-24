@@ -14,7 +14,8 @@
     "check": "astro check"
   },
   "dependencies": {
-    "astro": "^6.0.8"
+    "astro": "^6.0.8",
+    "simple-icons": "^16.13.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",

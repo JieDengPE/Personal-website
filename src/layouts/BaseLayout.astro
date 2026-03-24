@@ -14,7 +14,7 @@ interface Props {
 }
 
 const { title, description, locale, alternatePath, currentPath = Astro.url.pathname } = Astro.props;
-const site = await getSiteConfig(locale);
+const site = await getSiteConfig('en');
 ---
 
 <html lang={locale}>
@@ -23,6 +23,12 @@ const site = await getSiteConfig(locale);
 	</head>
 	<body>
 		<div class="site-shell">
+			<div class="site-topology" aria-hidden="true">
+				<div class="topology-layer topology-layer-grid" />
+				<div class="topology-layer topology-layer-flow" />
+				<div class="topology-layer topology-layer-nodes" />
+				<div class="topology-layer topology-layer-glow" />
+			</div>
 			<Nav
 				locale={locale}
 				currentPath={currentPath}

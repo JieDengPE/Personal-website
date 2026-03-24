@@ -1,42 +1,42 @@
 ---
 title: High-Isolation Auxiliary Power Supply Design
 routeSlug: high-isolation-auxiliary-power-supply-design
-order: 2
-status: active
+order: 3
+status: ongoing
 period: 2024 - Present
 domain: Auxiliary power architecture
 stack:
-  - High isolation
-  - Auxiliary converters
-  - Insulation-aware layout
-  - Reliability constraints
-  - Medium-voltage support systems
+  - High-isolation auxiliary converters
+  - Partial-discharge test platform
+  - Thermal test platform
+  - High-voltage insulation design
+  - Power-density optimization
 keywords:
   - auxiliary power supply
   - high isolation
   - medium voltage
-  - reliability
-summary: Designing auxiliary supplies that can support medium-voltage systems while meeting strict isolation, integration, and reliability requirements.
+  - power density
+summary: Ongoing high-isolation auxiliary power work for MV SST systems, targeting both strong insulation capability and high power density as system voltage keeps increasing.
 highlights:
-  - Treating the auxiliary supply as a critical system enabler rather than a secondary block
-  - Studying how insulation demands reshape converter architecture and layout choices
-  - Supporting reliable gate driving, control electronics, and sensing in harsh environments
+  - For a 34.5 kV SST input, auxiliary supply insulation may need to exceed roughly 50 kV
+  - The project focused on combining stronger insulation capability with high power density
+  - Experimental validation is complete and the work is now in the paper-writing stage
 links: []
+relatedPublications: []
 featured: false
 lang: en
 translationKey: project-aux-supply
 ---
-## Project intent
+## Why this project matters
 
-At medium voltage, auxiliary power is not a background utility. It strongly affects reliability, insulation design, physical integration, and the feasibility of the whole system.
+As MV SST input voltage increases, the auxiliary power supply becomes a major insulation problem rather than a secondary support circuit. A 34.5 kV input system can push the auxiliary-power insulation requirement to around 50 kV.
 
-## What I am testing
+## Current status
 
-- High-isolation auxiliary structures
-- Converter choices that work under demanding voltage stress
-- Practical integration with larger SST and module research directions
-- Architectures that remain realistic for future experimental deployment
+- Led the full project direction
+- Completed the experimental phase
+- Now pushing the work toward a publication output
 
-## Current direction
+## Current outcome
 
-The current direction is to build auxiliary-power designs that are electrically robust, experimentally credible, and aligned with the broader medium-voltage system architecture.
+This project has established an experimental basis for a high-isolation auxiliary power architecture in MV SST systems. It remains an active research thread until the publication output is finished.

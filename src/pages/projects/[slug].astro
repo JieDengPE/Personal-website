@@ -23,6 +23,9 @@ const { Content } = await render(entry);
 const translation = (
 	await getCollection('projects', ({ data }) => data.lang === 'zh' && data.translationKey === entry.data.translationKey)
 )[0];
+const publications = (await getCollection('publications', ({ data }) => data.lang === locale)).filter((publication) =>
+	entry.data.relatedPublications.includes(publication.data.translationKey),
+);
 ---
 
 <BaseLayout
@@ -52,10 +55,38 @@ const translation = (
 				<ul class="focus-list">
 					{entry.data.highlights.map((highlight) => <li>{highlight}</li>)}
 				</ul>
-				<div class="tag-list">
-					{entry.data.links.map((link) => <a class="text-link" href={link.href}>{link.label}</a>)}
-				</div>
 			</div>
+
+			{
+				publications.length > 0 && (
+					<div class="stack gap-4 publication-block">
+						<h3>Related publications</h3>
+						<ul class="publication-list">
+							{publications.map((publication) => (
+								<li>
+									<strong>{publication.data.title}</strong>
+									<p>{`${publication.data.venue} · ${publication.data.year} · ${publication.data.type}`}</p>
+									<div class="tag-list">
+										{publication.data.links.map((link) => (
+											<a class="text-link" href={link.href}>
+												{link.label}
+											</a>
+										))}
+									</div>
+								</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
+
+			{
+				entry.data.links.length > 0 && (
+					<div class="tag-list">
+						{entry.data.links.map((link) => <a class="text-link" href={link.href}>{link.label}</a>)}
+					</div>
+				)
+			}
 		</section>
 	</main>
 </BaseLayout>
@@ -65,9 +96,20 @@ const translation = (
 		padding: 1.4rem;
 	}
 
-	.focus-list {
+	.focus-list,
+	.publication-list {
 		padding-left: 1rem;
 		display: grid;
 		gap: 0.55rem;
+	}
+
+	.publication-list p {
+		color: var(--text-muted);
+		margin-top: 0.25rem;
+	}
+
+	.publication-block {
+		padding-top: 0.5rem;
+		border-top: 1px solid rgba(125, 148, 176, 0.12);
 	}
 </style>

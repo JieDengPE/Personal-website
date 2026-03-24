@@ -6,21 +6,22 @@ status: active
 period: 2024 - Present
 domain: Medium-voltage energy conversion
 stack:
-  - SST architectures
-  - Transformer co-design
-  - System modeling
-  - High-frequency magnetics
-  - Experimental validation planning
+  - AI-based parameter recommendation
+  - High-isolation SST transformer hardware
+  - Auxiliary power hardware
+  - Partial-discharge test platform
+  - Medium-voltage power supply
+  - Thermal test platform
 keywords:
   - solid-state transformer
   - medium voltage
   - transformer design
-  - system co-design
-summary: Researching single-port and dual-port solid-state transformer architectures together with transformer constraints, integration choices, and system-level tradeoffs.
+  - insulation
+summary: Leading an MV SST co-design project focused on converter-transformer coordination, insulation limits, AI-assisted parameter recommendation, and high-isolation transformer and auxiliary power hardware.
 highlights:
-  - Connecting converter topology and transformer design instead of optimizing them in isolation
-  - Balancing efficiency, insulation, integration, and power density at medium voltage
-  - Building a research path toward deployable SST systems rather than one-off concepts
+  - Building an AI-based parameter recommendation system for converter design decisions
+  - Developing high-isolation SST transformer hardware and auxiliary power hardware in parallel
+  - Current insulation capability has not yet exceeded 20 kV rms AC, which remains the main bottleneck
 links: []
 featured: true
 lang: en
@@ -28,15 +29,22 @@ translationKey: project-mv-sst
 ---
 ## Why this project matters
 
-Solid-state transformers promise more controllable and compact energy interfaces, but the real challenge is system integration. Converter architecture, transformer constraints, insulation, and packaging cannot be treated as separate decisions.
+Medium-voltage SST research only becomes meaningful when converter design, transformer design, and insulation constraints are treated as one coupled system rather than separate tasks.
 
-## What I am focusing on
+## What I am doing now
 
-- Single-port and dual-port SST structures
-- Transformer-aware system design tradeoffs
-- Research framing for medium-voltage implementation
-- Architecture choices that still make sense beyond simulation-only studies
+- Leading the project direction
+- Building an AI-based parameter recommendation system for the converter side
+- Developing a high-isolation SST transformer
+- Developing the auxiliary power hardware that supports the platform
 
-## Current direction
+## Current status
 
-The long-term goal is to move from architecture exploration toward experimentally grounded SST systems that are compact, efficient, and realistic for future grid interfaces.
+- The software-side parameter recommendation system is in progress
+- Transformer hardware is under development
+- The insulation design has not yet broken through 20 kV rms AC
+- The auxiliary power work has progressed to the paper-writing stage
+
+## Platforms and next step
+
+The work currently relies on a partial-discharge test platform, a medium-voltage power supply, and a thermal test platform. The next step is to keep pushing each branch forward until the design, insulation, and hardware sides converge into a more mature MV SST platform.

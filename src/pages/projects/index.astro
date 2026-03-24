@@ -7,20 +7,35 @@ import { getSiteConfig } from '../../lib/content';
 
 const locale = 'en' as const;
 const site = await getSiteConfig(locale);
-const projects = (await getCollection('projects', ({ data }) => data.lang === locale)).sort(
-	(a, b) => a.data.order - b.data.order,
-);
+const projects = (await getCollection('projects', ({ data }) => data.lang === locale))
+	.filter((project) => project.data.status === 'completed')
+	.sort((a, b) => a.data.order - b.data.order);
+const publications = await getCollection('publications', ({ data }) => data.lang === locale);
 ---
 
 <BaseLayout locale={locale} alternatePath="/zh/projects/" title={`Projects | ${site.name}`}>
 	<main class="wrapper page-main stack gap-12">
 		<SectionHeading
 			eyebrow="Projects"
-			title="Research projects, platforms, and workflow assets"
-			intro="The projects section combines hardware platforms, control workflows, and documentation systems that support the broader research direction."
+			title="Completed projects and research outputs"
+			intro="This page works as an archive of completed or publication-backed work. It includes finished engineering projects, mature research efforts, and related publications when available."
 		/>
 		<div class="cards-grid three">
-			{projects.map((project) => <ProjectCard project={project} locale={locale} />)}
+			{
+				projects.map((project) => {
+					const relatedPublications = publications.filter((publication) =>
+						project.data.relatedPublications.includes(publication.data.translationKey),
+					);
+
+					return (
+						<ProjectCard
+							project={project}
+							locale={locale}
+							relatedPublications={relatedPublications}
+						/>
+					);
+				})
+			}
 		</div>
 	</main>
 </BaseLayout>

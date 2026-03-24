@@ -20,21 +20,38 @@ const formatDate = (date: Date) =>
 		<SectionHeading
 			eyebrow="Blog"
 			title="研究思考、技术记录与阶段总结"
-			intro="这里更偏向观点、研究判断、阅读笔记和简短技术思考，而不是严格的操作型文档。"
+			intro="这里预留给观点、研究判断、阅读笔记和简短的技术思考，而不是严格的操作型文档。"
 		/>
-		<div class="cards-grid two">
-			{
-				posts.map((post) => (
-					<EntryCard
-						title={post.data.title}
-						summary={post.data.summary}
-						meta={formatDate(post.data.date)}
-						tags={post.data.tags}
-						href={localizePath(locale, `blog/${post.data.routeSlug}`)}
-						ctaLabel="继续阅读"
-					/>
-				))
-			}
-		</div>
+		{
+			posts.length > 0 ? (
+				<div class="cards-grid two">
+					{posts.map((post) => (
+						<EntryCard
+							title={post.data.title}
+							summary={post.data.summary}
+							meta={formatDate(post.data.date)}
+							tags={post.data.tags}
+							href={localizePath(locale, `blog/${post.data.routeSlug}`)}
+							ctaLabel="继续阅读"
+						/>
+					))}
+				</div>
+			) : (
+				<section class="surface-card empty-state stack gap-4">
+					<span class="meta-chip warm">还没有文章</span>
+					<h2>博客内容尚未开始写</h2>
+					<p class="lede">
+						这一页目前刻意保持为空。以后可以在这里记录研究想法、阅读笔记和阶段性的技术反思。
+					</p>
+				</section>
+			)
+		}
 	</main>
 </BaseLayout>
+
+<style>
+	.empty-state {
+		padding: 1.5rem;
+		max-width: 48rem;
+	}
+</style>

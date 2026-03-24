@@ -22,19 +22,37 @@ const formatDate = (date: Date) =>
 			title="Research thoughts, notes, and reflective writing"
 			intro="This section is reserved for ideas, direction-setting, reading notes, and short technical reflections."
 		/>
-		<div class="cards-grid two">
-			{
-				posts.map((post) => (
-					<EntryCard
-						title={post.data.title}
-						summary={post.data.summary}
-						meta={formatDate(post.data.date)}
-						tags={post.data.tags}
-						href={localizePath(locale, `blog/${post.data.routeSlug}`)}
-						ctaLabel="Read more"
-					/>
-				))
-			}
-		</div>
+		{
+			posts.length > 0 ? (
+				<div class="cards-grid two">
+					{posts.map((post) => (
+						<EntryCard
+							title={post.data.title}
+							summary={post.data.summary}
+							meta={formatDate(post.data.date)}
+							tags={post.data.tags}
+							href={localizePath(locale, `blog/${post.data.routeSlug}`)}
+							ctaLabel="Read more"
+						/>
+					))}
+				</div>
+			) : (
+				<section class="surface-card empty-state stack gap-4">
+					<span class="meta-chip warm">No posts yet</span>
+					<h2>Writing has not started yet</h2>
+					<p class="lede">
+						This page is intentionally empty for now. Future posts can hold research thoughts,
+						reading notes, and short technical reflections.
+					</p>
+				</section>
+			)
+		}
 	</main>
 </BaseLayout>
+
+<style>
+	.empty-state {
+		padding: 1.5rem;
+		max-width: 48rem;
+	}
+</style>

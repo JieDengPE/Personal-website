@@ -7,20 +7,35 @@ import { getSiteConfig } from '../../../lib/content';
 
 const locale = 'zh' as const;
 const site = await getSiteConfig(locale);
-const projects = (await getCollection('projects', ({ data }) => data.lang === locale)).sort(
-	(a, b) => a.data.order - b.data.order,
-);
+const projects = (await getCollection('projects', ({ data }) => data.lang === locale))
+	.filter((project) => project.data.status === 'completed')
+	.sort((a, b) => a.data.order - b.data.order);
+const publications = await getCollection('publications', ({ data }) => data.lang === locale);
 ---
 
-<BaseLayout locale={locale} alternatePath="/projects/" title={`项目 | ${site.name}`}>
+<BaseLayout locale={locale} alternatePath="/projects/" title={`已完成项目 | ${site.name}`}>
 	<main class="wrapper page-main stack gap-12">
 		<SectionHeading
 			eyebrow="Projects"
-			title="科研项目、实验平台与方向分支"
-			intro="这里汇总了当前研究方向中的关键项目，包括中压变换器、辅助电源、功率模块、绝缘实验平台以及 AI 辅助设计探索。"
+			title="已完成项目与相关研究输出"
+			intro="这一页展示已经完成、已经形成稳定输出，或已经有论文支撑的项目。只要项目有对应论文，也会一起挂在项目卡片和详情页里。"
 		/>
 		<div class="cards-grid three">
-			{projects.map((project) => <ProjectCard project={project} locale={locale} />)}
+			{
+				projects.map((project) => {
+					const relatedPublications = publications.filter((publication) =>
+						project.data.relatedPublications.includes(publication.data.translationKey),
+					);
+
+					return (
+						<ProjectCard
+							project={project}
+							locale={locale}
+							relatedPublications={relatedPublications}
+						/>
+					);
+				})
+			}
 		</div>
 	</main>
 </BaseLayout>

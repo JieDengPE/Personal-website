@@ -22,19 +22,36 @@ const formatDate = (date: Date) =>
 			title="可复用的软硬件操作手册"
 			intro="这里专门放面向执行的内容，例如实验上电流程、调试步骤、平台搭建说明以及常见问题排查。"
 		/>
-		<div class="cards-grid two">
-			{
-				manuals.map((manual) => (
-					<EntryCard
-						title={manual.data.title}
-						summary={manual.data.summary}
-						meta={`${manual.data.tool_or_platform} · ${formatDate(manual.data.updatedAt)}`}
-						tags={manual.data.tags}
-						href={localizePath(locale, `manuals/${manual.data.routeSlug}`)}
-						ctaLabel="打开手册"
-					/>
-				))
-			}
-		</div>
+		{
+			manuals.length > 0 ? (
+				<div class="cards-grid two">
+					{manuals.map((manual) => (
+						<EntryCard
+							title={manual.data.title}
+							summary={manual.data.summary}
+							meta={`${manual.data.tool_or_platform} · ${formatDate(manual.data.updatedAt)}`}
+							tags={manual.data.tags}
+							href={localizePath(locale, `manuals/${manual.data.routeSlug}`)}
+							ctaLabel="打开手册"
+						/>
+					))}
+				</div>
+			) : (
+				<section class="surface-card empty-state stack gap-4">
+					<span class="meta-chip warm">还没有手册</span>
+					<h2>手册内容后续再补</h2>
+					<p class="lede">
+						这一页目前先留空。后面可以逐步补上实验流程、bring-up 清单、调试步骤和平台搭建说明。
+					</p>
+				</section>
+			)
+		}
 	</main>
 </BaseLayout>
+
+<style>
+	.empty-state {
+		padding: 1.5rem;
+		max-width: 48rem;
+	}
+</style>

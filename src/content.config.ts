@@ -107,6 +107,7 @@ export const collections = {
 			summary: z.string(),
 			highlights: z.array(z.string()),
 			links: z.array(linkField).default([]),
+			relatedPublications: z.array(z.string()).default([]),
 			featured: z.boolean().default(false),
 			cover: z.string().optional(),
 		}),

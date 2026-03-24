@@ -9,34 +9,36 @@ stack:
   - Partial discharge
   - Square-wave excitation
   - High-voltage experimentation
-  - Measurement platform
-  - Insulation behavior
+  - Insulation diagnostics
 keywords:
   - partial discharge
   - insulation
   - square wave
   - experimental platform
-summary: Building an experimental platform to study insulation behavior and partial-discharge phenomena under square-wave excitation relevant to modern power-electronic systems.
+summary: Leading a square-wave partial-discharge experimental platform aimed at closing the current lack of commercial equipment for PD testing under square-wave excitation.
 highlights:
-  - Bringing insulation questions closer to real converter stress conditions
-  - Creating experimental evidence for design decisions that cannot rely on intuition alone
-  - Connecting diagnostics and insulation research back to converter and module design
+  - Addresses the absence of commercial square-wave-excited partial-discharge test equipment
+  - Builds a research platform for insulation studies under more realistic power-electronics voltage stress
+  - Led as a dedicated in-house development effort
 links: []
 featured: true
 lang: en
 translationKey: project-pd-platform
 ---
-## Project purpose
+## Why this project matters
 
-At medium voltage, insulation behavior is not a side topic. It often sets hard limits on what converter and module concepts can become real hardware.
+There is currently no commercial equipment for partial-discharge testing under square-wave excitation. That gap makes it harder to study insulation behavior under voltage stresses that are increasingly relevant in modern power-electronics systems.
 
-## What it includes
+## What I am doing now
 
-- Square-wave high-voltage test concepts
-- Platform design for observing partial-discharge behavior
-- Research structure for linking insulation data to engineering choices
-- A foundation for future insulation-aware platform development
+- Leading the direction of the platform
+- Defining a dedicated experimental capability for square-wave-excited partial-discharge research
+- Positioning the platform around a clear testing gap that commercial tools do not cover
 
-## Current direction
+## Current status
 
-The platform is being shaped into a research tool that helps explain when insulation becomes the limiting factor and how those limits should influence converter and module design.
+The research need and project objective are clear. Detailed implementation, measurements, and public technical outputs are still being developed.
+
+## Next step
+
+As the platform matures, this page can expand with the hardware structure, testing workflow, and research results.

@@ -51,17 +51,17 @@
       {
         "title": "Medium-voltage SST converter and transformer co-design",
         "status": "Active",
-        "summary": "Studying single-port and dual-port SST architectures together with transformer constraints, integration decisions, and system-level performance."
+        "summary": "Leading an MV SST co-design effort focused on AI-based converter parameter recommendation, high-isolation transformer and auxiliary power hardware, and the insulation bottleneck that has not yet exceeded 20 kV rms AC."
       },
       {
         "title": "High-isolation auxiliary power supply design",
         "status": "Active",
-        "summary": "Designing auxiliary supplies that can support medium-voltage systems while meeting demanding insulation and reliability requirements."
+        "summary": "Leading a high-isolation auxiliary power project for MV SST systems, with the goal of combining strong insulation capability and high power density; the experimental phase is complete and the work is now moving into paper writing."
       },
       {
         "title": "High-switching-frequency medium-voltage GaN power module design",
         "status": "Active",
-        "summary": "Exploring how GaN-based modules can enable higher switching frequency, higher power density, and new converter possibilities at medium voltage."
+        "summary": "Leading a 1300 V / 60 A series-stacked GaN power module effort aimed at breaking the 1 MHz switching barrier in medium-voltage power semiconductors; experiments are complete, one conference paper is published, and the next step is moving from discrete devices to bare-die GaN."
       },
       {
         "title": "Medium-frequency high-voltage SiC power module design",
@@ -71,7 +71,7 @@
       {
         "title": "Square-wave partial discharge experimental platform",
         "status": "Active",
-        "summary": "Building an experimental setup for understanding insulation behavior and partial-discharge phenomena under square-wave excitation."
+        "summary": "Leading the development of a square-wave partial-discharge experimental platform to address the lack of commercial equipment for partial-discharge testing under square-wave excitation."
       },
       {
         "title": "AI-based converter and power module design",
@@ -88,36 +88,37 @@
   },
   "skillGroups": [
     {
-      "title": "Converters and Power Hardware",
-      "description": "Designing power stages from low-voltage prototypes to medium-voltage research systems.",
+      "title": "Hardware",
+      "description": "System-level hardware capability in high-power and high-frequency power-electronics converters.",
       "items": [
-        "Single-phase grid-tied inverters",
-        "UPS power supplies",
-        "DC-DC converters and auxiliary supplies",
-        "Three-level converter technology",
-        "Solid-state transformer converter design"
+        "High-power power-electronics converter system design",
+        "High-frequency converter system design experience"
       ]
     },
     {
-      "title": "Embedded, PCB, and Experimental Practice",
-      "description": "Connecting hardware implementation with controller realization and testability.",
+      "title": "Software / EDA and Simulation",
+      "description": "Schematic, PCB, and circuit-simulation tools used in converter research and prototyping.",
       "items": [
-        "DSP programming",
-        "STM32 programming",
-        "PCB design",
-        "High-frequency experimental validation",
-        "Laboratory debugging and prototype bring-up"
+        "Altium Designer",
+        "KiCad",
+        "SIMetrix",
+        "LTspice",
+        "Multisim",
+        "Proteus",
+        "PLECS",
+        "PSIM"
       ]
     },
     {
-      "title": "Research and Advanced Topics",
-      "description": "Developing deeper research capability for high-voltage and high-frequency systems.",
+      "title": "Software / Coding and Analysis",
+      "description": "Embedded, digital, AI, and CAE tools used to implement controllers and analyze hardware systems.",
       "items": [
-        "Research writing",
-        "Soft-switching techniques",
-        "High-frequency three-phase T-type three-level inverter research",
-        "Medium-voltage GaN and SiC module design",
-        "AI-based power-electronics design exploration"
+        "DSP coding",
+        "STM32 coding",
+        "FPGA coding",
+        "AI coding",
+        "Ansys",
+        "SolidWorks"
       ]
     }
   ],
